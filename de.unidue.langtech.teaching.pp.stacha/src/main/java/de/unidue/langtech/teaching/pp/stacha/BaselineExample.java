@@ -1,4 +1,4 @@
-package de.unidue.langtech.teaching.pp.example;
+package de.unidue.langtech.teaching.pp.stacha;
 
 import java.util.Collection;
 

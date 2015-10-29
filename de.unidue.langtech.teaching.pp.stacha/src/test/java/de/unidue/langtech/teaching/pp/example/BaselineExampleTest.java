@@ -13,6 +13,7 @@ import org.apache.uima.jcas.JCas;
 import org.junit.Test;
 
 import de.tudarmstadt.ukp.dkpro.core.tokit.BreakIteratorSegmenter;
+import de.unidue.langtech.teaching.pp.stacha.BaselineExample;
 import de.unidue.langtech.teaching.pp.type.DetectedLanguage;
 
 public class BaselineExampleTest {

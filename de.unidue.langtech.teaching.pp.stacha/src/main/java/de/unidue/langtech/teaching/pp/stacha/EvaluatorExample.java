@@ -1,4 +1,4 @@
-package de.unidue.langtech.teaching.pp.example.evaluatorSol;
+package de.unidue.langtech.teaching.pp.stacha;
 
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
@@ -37,15 +37,13 @@ public class EvaluatorExample
     public void process(JCas jcas)
         throws AnalysisEngineProcessException
     {
-        nrOfDocuments++; 
         
         DetectedLanguage detected = JCasUtil.selectSingle(jcas, DetectedLanguage.class);
         GoldLanguage actual = JCasUtil.selectSingle(jcas, GoldLanguage.class);
 
         System.out.println(actual.getLanguage() + " detected as " + detected.getLanguage());
-        if (detected.getLanguage().equals(actual.getLanguage())) {
-            correct++;
-        }
+        
+        // FIXME: Keep track of correctly classified documents! 
     }
 
 

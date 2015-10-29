@@ -1,12 +1,12 @@
-package de.unidue.langtech.teaching.pp.example.pipeline;
+package de.unidue.langtech.teaching.pp.stacha.pipeline;
 
 import org.apache.uima.fit.factory.AnalysisEngineFactory;
 import org.apache.uima.fit.factory.CollectionReaderFactory;
 import org.apache.uima.fit.pipeline.SimplePipeline;
 
-import de.unidue.langtech.teaching.pp.example.BaselineExample;
-import de.unidue.langtech.teaching.pp.example.EvaluatorExample;
-import de.unidue.langtech.teaching.pp.example.ReaderExample;
+import de.unidue.langtech.teaching.pp.stacha.BaselineExample;
+import de.unidue.langtech.teaching.pp.stacha.EvaluatorExample;
+import de.unidue.langtech.teaching.pp.stacha.ReaderExample;
 
 public class BasicPipeline
 {
