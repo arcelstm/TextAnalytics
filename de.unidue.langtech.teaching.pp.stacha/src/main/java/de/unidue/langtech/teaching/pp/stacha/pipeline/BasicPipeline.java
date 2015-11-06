@@ -27,6 +27,7 @@ public class BasicPipeline
                 AnalysisEngineFactory.createEngineDescription(EvaluatorExample.class),
                 AnalysisEngineFactory.createEngineDescription(BreakIteratorSegmenter.class),
                 AnalysisEngineFactory.createEngineDescription(SnowballStemmer.class,SnowballStemmer.PARAM_LANGUAGE,"en"),
+                //  exception  
                 //AnalysisEngineFactory.createEngineDescription(TreeTaggerPosTagger.class),
                 AnalysisEngineFactory.createEngineDescription(CasDumpWriter.class)
         );
