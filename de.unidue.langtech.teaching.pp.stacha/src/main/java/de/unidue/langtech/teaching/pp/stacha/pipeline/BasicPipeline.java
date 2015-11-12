@@ -26,16 +26,10 @@ public class BasicPipeline
                 AnalysisEngineFactory.createEngineDescription(BreakIteratorSegmenter.class),
                 AnalysisEngineFactory.createEngineDescription(BaselineExample.class),
                 AnalysisEngineFactory.createEngineDescription(EvaluatorExample.class),
-                AnalysisEngineFactory.createEngineDescription(SnowballStemmer.class,SnowballStemmer.PARAM_LANGUAGE,"en"),
+                AnalysisEngineFactory.createEngineDescription(SnowballStemmer.class,SnowballStemmer.PARAM_LANGUAGE,"en")
                 //AnalysisEngineFactory.createEngineDescription(TreeTaggerPosTagger.class)
                 
                 //AnalysisEngineFactory.createEngineDescription(CasDumpWriter.class)
-
-                AnalysisEngineFactory.createEngineDescription(BreakIteratorSegmenter.class),
-                AnalysisEngineFactory.createEngineDescription(SnowballStemmer.class,SnowballStemmer.PARAM_LANGUAGE,"en"),
-                //  exception  
-                //AnalysisEngineFactory.createEngineDescription(TreeTaggerPosTagger.class),
-                AnalysisEngineFactory.createEngineDescription(CasDumpWriter.class)
 
         );
     }

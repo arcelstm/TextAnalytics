@@ -35,7 +35,7 @@ public class EvaluatorExample extends JCasAnnotator_ImplBase{
     public void process(JCas jcas) throws AnalysisEngineProcessException{
     	
     	nrOfDocuments++;
-        
+        //
         DetectedLanguage detected = JCasUtil.selectSingle(jcas, DetectedLanguage.class);
         GoldLanguage actual = JCasUtil.selectSingle(jcas, GoldLanguage.class);
 
