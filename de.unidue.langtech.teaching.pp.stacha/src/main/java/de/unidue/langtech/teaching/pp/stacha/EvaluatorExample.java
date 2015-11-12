@@ -10,9 +10,7 @@ import org.apache.uima.resource.ResourceInitializationException;
 import de.unidue.langtech.teaching.pp.type.DetectedLanguage;
 import de.unidue.langtech.teaching.pp.type.GoldLanguage;
 
-public class EvaluatorExample
-    extends JCasAnnotator_ImplBase
-{
+public class EvaluatorExample extends JCasAnnotator_ImplBase{
 
     private int correct;
     private int nrOfDocuments;
@@ -34,18 +32,20 @@ public class EvaluatorExample
      * This is called ONCE for each document
      */
     @Override
-    public void process(JCas jcas)
-        throws AnalysisEngineProcessException
-    {
+    public void process(JCas jcas) throws AnalysisEngineProcessException{
+    	
+    	nrOfDocuments++;
         
         DetectedLanguage detected = JCasUtil.selectSingle(jcas, DetectedLanguage.class);
         GoldLanguage actual = JCasUtil.selectSingle(jcas, GoldLanguage.class);
 
         System.out.println(actual.getLanguage() + " detected as " + detected.getLanguage());
+                
+        if(actual.getLanguage().equals(detected.getLanguage())){
+        	correct++;
+        }
         
-        // FIXME: Keep track of correctly classified documents! 
     }
-
 
     /* 
      * This is called AFTER all documents have been processed.

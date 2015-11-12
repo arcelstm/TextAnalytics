@@ -27,10 +27,40 @@ public class BaselineExample
         System.out.println("Document is: " + jcas.getDocumentText());
         
         Collection<Token> tokens = JCasUtil.select(jcas, Token.class);
-        System.out.println("CAS contains " + tokens.size() + " tokens.");
         
         DetectedLanguage languageAnno = new DetectedLanguage(jcas);
-        languageAnno.setLanguage("EN");
+        
+        String lang = "EN";
+              
+        for(Token t:tokens){
+        	String x = t.getCoveredText().toLowerCase();
+        	        	
+        		if(x.equals("das")){
+        			lang="DE";
+        		}
+        		
+        		if(x.equals("devoirs")){
+        			lang="FR";
+        		}
+        		
+        		if(x.equals("diez")){
+        			lang="ES";
+        		}
+        		
+        		if(x.equals("giorno")){
+        			lang="IT";
+        		}
+        		
+        		if(x.equals("rätt")){
+        			lang="SE";
+        		}
+        		
+        }
+        
+        languageAnno.setLanguage(lang);
+        
+        System.out.println("CAS contains " + tokens.size() + " tokens.");
+        
         languageAnno.addToIndexes();
     }
 }
