@@ -38,7 +38,11 @@ public class EvaluatorExample extends JCasAnnotator_ImplBase{
         DetectedLanguage detected = JCasUtil.selectSingle(jcas, DetectedLanguage.class);
         GoldLanguage actual = JCasUtil.selectSingle(jcas, GoldLanguage.class);
 
+<<<<<<< HEAD
         System.out.println(actual.getLanguage() + " detected as " + detected.getLanguage()+"\n");
+=======
+        System.out.println(actual.getLanguage() + " detected as " + detected.getLanguage()+ "\n" +"-----------------------------------------------------------------");
+>>>>>>> refs/remotes/origin/master
                 
         if(actual.getLanguage().equals(detected.getLanguage())){
         	correct++;

@@ -1,5 +1,6 @@
 package de.unidue.langtech.teaching.pp.stacha;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
@@ -35,7 +36,12 @@ public class BaselineExample extends JCasAnnotator_ImplBase{
         DetectedLanguage languageAnno = new DetectedLanguage(jcas);
         
         String lang = "EN";
-              
+        
+        ArrayList<String> eng = new ArrayList<String>();
+        	eng.add("test");
+        	
+        	//
+        
         for(Token t:tokens){
         	
         	String x = t.getCoveredText().toLowerCase();
