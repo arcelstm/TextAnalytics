@@ -9,12 +9,10 @@ import de.unidue.langtech.teaching.pp.stacha.BaselineExample;
 import de.unidue.langtech.teaching.pp.stacha.EvaluatorExample;
 import de.unidue.langtech.teaching.pp.stacha.ReaderExample;
 
-public class ExtendedPipeline
-{
+public class ExtendedPipeline{
 
-    public static void main(String[] args)
-        throws Exception
-    {
+    public static void main(String[] args)throws Exception{
+    	
         SimplePipeline.runPipeline(
                 CollectionReaderFactory.createReader(
                         ReaderExample.class,
@@ -23,6 +21,7 @@ public class ExtendedPipeline
                 AnalysisEngineFactory.createEngineDescription(BreakIteratorSegmenter.class),
                 AnalysisEngineFactory.createEngineDescription(BaselineExample.class),
                 AnalysisEngineFactory.createEngineDescription(EvaluatorExample.class)
+                
         );
     }
 }

@@ -41,9 +41,8 @@ public class ReaderExample
      * initializes the reader
      */
     @Override
-    public void initialize(UimaContext context)
-        throws ResourceInitializationException
-    {
+    public void initialize(UimaContext context) throws ResourceInitializationException{
+    	
         super.initialize(context);
         
         try {
@@ -55,16 +54,12 @@ public class ReaderExample
         }
     }
     
-    
     /* 
      * true, if there is a next document, false otherwise
      */
-    public boolean hasNext()
-        throws IOException, CollectionException
-    {
+    public boolean hasNext() throws IOException, CollectionException{
         return currentLine < lines.size();
     }
-    
     
     /* 
      * feeds the next document into the pipeline
@@ -92,10 +87,10 @@ public class ReaderExample
         currentLine++;
     }
 
-    
     /* 
      * informs the pipeline about the current progress
      */
+    
     public Progress[] getProgress()
     {
         return new Progress[] { new ProgressImpl(currentLine, lines.size(), "lines") };

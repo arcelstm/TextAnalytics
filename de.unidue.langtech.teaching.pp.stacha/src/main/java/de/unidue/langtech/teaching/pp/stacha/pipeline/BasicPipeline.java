@@ -8,17 +8,16 @@ import org.apache.uima.fit.pipeline.SimplePipeline;
 import de.tudarmstadt.ukp.dkpro.core.snowball.SnowballStemmer;
 import de.tudarmstadt.ukp.dkpro.core.tokit.BreakIteratorSegmenter;
 import de.tudarmstadt.ukp.dkpro.core.treetagger.TreeTaggerPosTagger;
+
 import de.unidue.langtech.teaching.pp.stacha.BaselineExample;
 import de.unidue.langtech.teaching.pp.stacha.EvaluatorExample;
 import de.unidue.langtech.teaching.pp.stacha.ReaderExample;
 import de.unidue.langtech.teaching.pp.stacha.newType.LetterAnnotator;
 
-public class BasicPipeline
-{
-//test
-    public static void main(String[] args)
-        throws Exception
-    {
+public class BasicPipeline{
+	
+    public static void main(String[] args) throws Exception{
+    	
         SimplePipeline.runPipeline(
                 CollectionReaderFactory.createReader(
                         ReaderExample.class,
@@ -29,8 +28,8 @@ public class BasicPipeline
                 AnalysisEngineFactory.createEngineDescription(LetterAnnotator.class),
                 AnalysisEngineFactory.createEngineDescription(EvaluatorExample.class),           
                 AnalysisEngineFactory.createEngineDescription(SnowballStemmer.class,SnowballStemmer.PARAM_LANGUAGE,"en")
-                //AnalysisEngineFactory.createEngineDescription(TreeTaggerPosTagger.class)
-                //AnalysisEngineFactory.createEngineDescription(CasDumpWriter.class)
+                //,AnalysisEngineFactory.createEngineDescription(TreeTaggerPosTagger.class)
+                //,AnalysisEngineFactory.createEngineDescription(CasDumpWriter.class)
 
         );
     }

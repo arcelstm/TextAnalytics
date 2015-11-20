@@ -17,35 +17,33 @@ import de.unidue.langtech.teaching.pp.type.DetectedLanguage;
  * @author zesch
  *
  */
-public class BaselineExample
-    extends JCasAnnotator_ImplBase
-{
 
-	public static final String PARAM_MESSAGE="PARAM_MESSAGE";
-	@ConfigurationParameter(name=PARAM_MESSAGE,mandatory=true, defaultValue="Scusi")
+public class BaselineExample extends JCasAnnotator_ImplBase{
+
+	public static final String PARAM_MESSAGE= "PARAM_MESSAGE";
+	@ConfigurationParameter
+	(name= PARAM_MESSAGE, mandatory=true, defaultValue= "Scusi")
 	protected String message;
 	
     @Override
-    public void process(JCas jcas)
-        throws AnalysisEngineProcessException
-    {
-    	System.out.println(message);
+    public void process(JCas jcas) throws AnalysisEngineProcessException{
     	
+    	System.out.println(message);
         System.out.println("Document is: " + jcas.getDocumentText());
         
         Collection<Token> tokens = JCasUtil.select(jcas, Token.class);
-        
         DetectedLanguage languageAnno = new DetectedLanguage(jcas);
         
         String lang = "EN";
               
         for(Token t:tokens){
+        	
         	String x = t.getCoveredText().toLowerCase();
         	        	
         		if(x.equals("das")){
         			lang="DE";
         		}
-        		//
+        		
         		if(x.equals("devoirs")){
         			lang="FR";
         		}
@@ -61,13 +59,11 @@ public class BaselineExample
         		if(x.equals("rätt")){
         			lang="SE";
         		}
-        		
         }
-        
-        languageAnno.setLanguage(lang);
-        
+                
         System.out.println("CAS contains " + tokens.size() + " tokens.");
+        languageAnno.setLanguage(lang);
+        languageAnno.addToIndexes();
         
-       languageAnno.addToIndexes();
     }
 }
