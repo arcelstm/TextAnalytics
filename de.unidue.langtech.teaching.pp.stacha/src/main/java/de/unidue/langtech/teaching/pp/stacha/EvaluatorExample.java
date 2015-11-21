@@ -14,7 +14,7 @@ public class EvaluatorExample extends JCasAnnotator_ImplBase{
 
     private int correct;
     private int nrOfDocuments;
-    //
+    
     /* 
      * This is called BEFORE any documents are processed.
      */
@@ -38,8 +38,7 @@ public class EvaluatorExample extends JCasAnnotator_ImplBase{
         DetectedLanguage detected = JCasUtil.selectSingle(jcas, DetectedLanguage.class);
         GoldLanguage actual = JCasUtil.selectSingle(jcas, GoldLanguage.class);
 
-        System.out.println(actual.getLanguage() + " detected as " + detected.getLanguage()+"\n");
-        System.out.println(actual.getLanguage() + " detected as " + detected.getLanguage()+ "\n" +"-----------------------------------------------------------------");
+        System.out.println("\n"+actual.getLanguage() + " detected as " + detected.getLanguage()+ "\n-----------------------------------------------------------------");
 
                 
         if(actual.getLanguage().equals(detected.getLanguage())){

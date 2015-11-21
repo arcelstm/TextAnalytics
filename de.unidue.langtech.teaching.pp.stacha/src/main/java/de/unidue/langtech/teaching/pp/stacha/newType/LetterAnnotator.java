@@ -28,8 +28,8 @@ public class LetterAnnotator extends JCasAnnotator_ImplBase{
             	}
             }
                        
-            System.out.println("Letter a " + countLetterA +"x");
-            System.out.println("Letter e " + countLetterE +"x");
+            System.out.println("a: " + countLetterA +"x");
+            System.out.println("e: " + countLetterE +"x");
        
         //Set this integer value to the property of the new type 'MyType'
         MyType myType = new MyType(jcas);

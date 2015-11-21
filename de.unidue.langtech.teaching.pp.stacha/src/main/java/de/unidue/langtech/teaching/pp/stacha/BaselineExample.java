@@ -29,7 +29,7 @@ public class BaselineExample extends JCasAnnotator_ImplBase{
     @Override
     public void process(JCas jcas) throws AnalysisEngineProcessException{
     	
-    	System.out.println(message);
+    	System.out.println(message+"\n");
         System.out.println("Document is: " + jcas.getDocumentText());
         
         Collection<Token> tokens = JCasUtil.select(jcas, Token.class);

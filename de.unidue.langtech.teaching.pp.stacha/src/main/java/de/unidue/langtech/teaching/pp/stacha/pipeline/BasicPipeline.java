@@ -19,11 +19,13 @@ public class BasicPipeline{
     public static void main(String[] args) throws Exception{
     	
         SimplePipeline.runPipeline(
+        		
                 CollectionReaderFactory.createReader(
                         ReaderExample.class,
                         ReaderExample.PARAM_INPUT_FILE, "src/test/resources/test/input.txt"
                 ),
-                AnalysisEngineFactory.createEngineDescription(BreakIteratorSegmenter.class),
+                //AnalysisEngineFactory.createEngineDescription(BaselineExample.class),
+                AnalysisEngineFactory.createEngineDescription(BreakIteratorSegmenter.class),             
                 AnalysisEngineFactory.createEngineDescription(BaselineExample.class,BaselineExample.PARAM_MESSAGE, "check"),
                 AnalysisEngineFactory.createEngineDescription(LetterAnnotator.class),
                 AnalysisEngineFactory.createEngineDescription(EvaluatorExample.class),           
