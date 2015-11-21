@@ -14,7 +14,7 @@ public class EvaluatorExample extends JCasAnnotator_ImplBase{
 
     private int correct;
     private int nrOfDocuments;
-    
+    //
     /* 
      * This is called BEFORE any documents are processed.
      */
