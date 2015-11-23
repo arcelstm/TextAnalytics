@@ -29,7 +29,7 @@ public class Printer
         for (MyType t : letterECount) {
             System.out.println("Detected: " + detected.getLanguage() + " Gold:"
                     + gold.getLanguage());
-            System.out.println("Number of e/E: " + t.getCountLetterE());
+            System.out.println("Number of e/E: " + t.getCountLetter());
         }
 
     }

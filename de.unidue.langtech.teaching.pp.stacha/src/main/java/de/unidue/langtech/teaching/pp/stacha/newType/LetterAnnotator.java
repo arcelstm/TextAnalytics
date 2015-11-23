@@ -10,13 +10,12 @@ public class LetterAnnotator extends JCasAnnotator_ImplBase{
 
     public void process(JCas jcas) throws AnalysisEngineProcessException{
     	
-        String documentText = jcas.getDocumentText();
         String documentTextUpper = jcas.getDocumentText().toUpperCase();
-
+        int countLetter = 0;
+        
             for (char i = 'A'; i <= 'Z'; i++) {
-            	
-            	int countLetter = 0;
-            	
+            	countLetter = 0;
+            	            	
 				for (char c : documentTextUpper.toCharArray()) {
 					if (c == i) {
 						countLetter++;
@@ -26,10 +25,10 @@ public class LetterAnnotator extends JCasAnnotator_ImplBase{
 				if(countLetter>0)
 				System.out.println(countLetter +"x "+i);
 			}
-                       
+            
         //Set this integer value to the property of the new type 'MyType'
         MyType myType = new MyType(jcas);
-        //myType.setCountLetterE(countLetter);
+        myType.setCountLetter(countLetter);
         myType.addToIndexes();
 
     }

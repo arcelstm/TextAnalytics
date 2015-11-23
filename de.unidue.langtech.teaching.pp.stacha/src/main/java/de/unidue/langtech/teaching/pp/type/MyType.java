@@ -77,25 +77,25 @@ public class MyType extends Annotation {
  
     
   //*--------------*
-  //* Feature: countLetterE
+  //* Feature: countLetter
 
-  /** getter for countLetterE - gets 
+  /** getter for countLetter - gets 
    * @generated
    * @return value of the feature 
    */
-  public int getCountLetterE() {
-    if (MyType_Type.featOkTst && ((MyType_Type)jcasType).casFeat_countLetterE == null)
-      jcasType.jcas.throwFeatMissing("countLetterE", "de.unidue.langtech.teaching.pp.type.MyType");
-    return jcasType.ll_cas.ll_getIntValue(addr, ((MyType_Type)jcasType).casFeatCode_countLetterE);}
+  public int getCountLetter() {
+    if (MyType_Type.featOkTst && ((MyType_Type)jcasType).casFeat_countLetter == null)
+      jcasType.jcas.throwFeatMissing("countLetter", "de.unidue.langtech.teaching.pp.type.MyType");
+    return jcasType.ll_cas.ll_getIntValue(addr, ((MyType_Type)jcasType).casFeatCode_countLetter);}
     
-  /** setter for countLetterE - sets  
+  /** setter for countLetter - sets  
    * @generated
    * @param v value to set into the feature 
    */
-  public void setCountLetterE(int v) {
-    if (MyType_Type.featOkTst && ((MyType_Type)jcasType).casFeat_countLetterE == null)
-      jcasType.jcas.throwFeatMissing("countLetterE", "de.unidue.langtech.teaching.pp.type.MyType");
-    jcasType.ll_cas.ll_setIntValue(addr, ((MyType_Type)jcasType).casFeatCode_countLetterE, v);}    
+  public void setCountLetter(int v) {
+    if (MyType_Type.featOkTst && ((MyType_Type)jcasType).casFeat_countLetter == null)
+      jcasType.jcas.throwFeatMissing("countLetter", "de.unidue.langtech.teaching.pp.type.MyType");
+    jcasType.ll_cas.ll_setIntValue(addr, ((MyType_Type)jcasType).casFeatCode_countLetter, v);}    
   }
 
     

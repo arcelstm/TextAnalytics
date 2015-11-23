@@ -47,26 +47,26 @@ public class MyType_Type extends Annotation_Type {
   public final static boolean featOkTst = JCasRegistry.getFeatOkTst("de.unidue.langtech.teaching.pp.type.MyType");
  
   /** @generated */
-  final Feature casFeat_countLetterE;
+  final Feature casFeat_countLetter;
   /** @generated */
-  final int     casFeatCode_countLetterE;
+  final int     casFeatCode_countLetter;
   /** @generated
    * @param addr low level Feature Structure reference
    * @return the feature value 
    */ 
-  public int getCountLetterE(int addr) {
-        if (featOkTst && casFeat_countLetterE == null)
-      jcas.throwFeatMissing("countLetterE", "de.unidue.langtech.teaching.pp.type.MyType");
-    return ll_cas.ll_getIntValue(addr, casFeatCode_countLetterE);
+  public int getcountLetter(int addr) {
+        if (featOkTst && casFeat_countLetter == null)
+      jcas.throwFeatMissing("countLetter", "de.unidue.langtech.teaching.pp.type.MyType");
+    return ll_cas.ll_getIntValue(addr, casFeatCode_countLetter);
   }
   /** @generated
    * @param addr low level Feature Structure reference
    * @param v value to set 
    */    
-  public void setCountLetterE(int addr, int v) {
-        if (featOkTst && casFeat_countLetterE == null)
-      jcas.throwFeatMissing("countLetterE", "de.unidue.langtech.teaching.pp.type.MyType");
-    ll_cas.ll_setIntValue(addr, casFeatCode_countLetterE, v);}
+  public void setCountLetter(int addr, int v) {
+        if (featOkTst && casFeat_countLetter == null)
+      jcas.throwFeatMissing("countLetter", "de.unidue.langtech.teaching.pp.type.MyType");
+    ll_cas.ll_setIntValue(addr, casFeatCode_countLetter, v);}
     
   
 
@@ -82,8 +82,8 @@ public class MyType_Type extends Annotation_Type {
     casImpl.getFSClassRegistry().addGeneratorForType((TypeImpl)this.casType, getFSGenerator());
 
  
-    casFeat_countLetterE = jcas.getRequiredFeatureDE(casType, "countLetterE", "uima.cas.Integer", featOkTst);
-    casFeatCode_countLetterE  = (null == casFeat_countLetterE) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_countLetterE).getCode();
+    casFeat_countLetter = jcas.getRequiredFeatureDE(casType, "countLetter", "uima.cas.Integer", featOkTst);
+    casFeatCode_countLetter  = (null == casFeat_countLetter) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_countLetter).getCode();
 
   }
 }
