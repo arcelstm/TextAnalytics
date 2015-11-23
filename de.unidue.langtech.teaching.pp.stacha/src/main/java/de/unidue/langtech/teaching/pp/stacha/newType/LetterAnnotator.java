@@ -11,29 +11,25 @@ public class LetterAnnotator extends JCasAnnotator_ImplBase{
     public void process(JCas jcas) throws AnalysisEngineProcessException{
     	
         String documentText = jcas.getDocumentText();
+        String documentTextUpper = jcas.getDocumentText().toUpperCase();
 
-            int countLetterA = 0;
-            
-            for (char c : documentText.toCharArray()) {
-                if (c == 'a' || c == 'A') {
-                    countLetterA++;
-                }
-            }
-            
-            int countLetterE = 0;
-            
-            for (char c : documentText.toCharArray()) {
-            	if (c == 'e' || c == 'E') {
-            		countLetterE++;
-            	}
-            }
+            for (char i = 'A'; i <= 'Z'; i++) {
+            	
+            	int countLetter = 0;
+            	
+				for (char c : documentTextUpper.toCharArray()) {
+					if (c == i) {
+						countLetter++;
+					}
+				}
+				
+				if(countLetter>0)
+				System.out.println(countLetter +"x "+i);
+			}
                        
-            System.out.println("a: " + countLetterA +"x");
-            System.out.println("e: " + countLetterE +"x");
-       
         //Set this integer value to the property of the new type 'MyType'
         MyType myType = new MyType(jcas);
-        myType.setCountLetterE(countLetterE);
+        //myType.setCountLetterE(countLetter);
         myType.addToIndexes();
 
     }
