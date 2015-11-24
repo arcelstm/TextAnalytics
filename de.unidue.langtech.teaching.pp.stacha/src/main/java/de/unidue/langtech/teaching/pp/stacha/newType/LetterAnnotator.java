@@ -13,6 +13,7 @@ public class LetterAnnotator extends JCasAnnotator_ImplBase{
         String documentTextUpper = jcas.getDocumentText().toUpperCase();
         int countLetter = 0;
         
+        	//counts A-Z (lower- and uppercase)
             for (char i = 'A'; i <= 'Z'; i++) {
             	countLetter = 0;
             	            	
