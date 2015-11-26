@@ -14,17 +14,17 @@ public class LetterAnnotator extends JCasAnnotator_ImplBase{
         int countLetter = 0;
         
         	//counts A-Z (lower- and uppercase)
-            for (char i = 'A'; i <= 'Z'; i++) {
+            for (char l = 'A'; l <= 'Z'; l++) {
             	countLetter = 0;
             	            	
 				for (char c : documentTextUpper.toCharArray()) {
-					if (c == i) {
+					if (c == l) {
 						countLetter++;
 					}
 				}
 				
 				if(countLetter>0)
-				System.out.println(countLetter +"x "+i);
+				System.out.println(countLetter +"x "+l);
 			}
             
         //Set this integer value to the property of the new type 'MyType'
