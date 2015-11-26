@@ -81,6 +81,8 @@ public class NewReaderSolution
         // the first line is the language code
         GoldLanguage goldLanguage = new GoldLanguage(aJCas);
         goldLanguage.setLanguage(entry.get(0));
+    	System.out.println(entry.get(0));
+
         goldLanguage.addToIndexes();
 
         String documentText = "";

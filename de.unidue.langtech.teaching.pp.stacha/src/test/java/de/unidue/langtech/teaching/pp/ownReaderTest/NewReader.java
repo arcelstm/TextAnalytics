@@ -2,6 +2,7 @@ package de.unidue.langtech.teaching.pp.ownReaderTest;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -13,6 +14,9 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Progress;
 
+import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
+import de.unidue.langtech.teaching.pp.type.GoldLanguage;
+
 public class NewReader
     extends JCasCollectionReader_ImplBase
 {
@@ -22,10 +26,9 @@ public class NewReader
 
     private List<String> lines;
     private int currentLine;
+  
 
-    public void initialize(UimaContext context)
-        throws ResourceInitializationException
-    {
+    public void initialize(UimaContext context) throws ResourceInitializationException{
         super.initialize(context);
 
         try {
@@ -37,10 +40,8 @@ public class NewReader
         }
     }
 
-    public boolean hasNext()
-        throws IOException, CollectionException
-    {
-        return currentLine < lines.size();
+    public boolean hasNext() throws IOException, CollectionException{
+         return currentLine < lines.size();
     }
 
     public Progress[] getProgress()
@@ -48,12 +49,42 @@ public class NewReader
         return null;
     }
 
-    public void getNext(JCas aJCas)
-        throws IOException, CollectionException
-    {
-
-        // increment to avoid infinite looping - delete it if you don't need it
-        currentLine++;
+    public void getNext(JCas aJCas) throws IOException, CollectionException{
+    
+    	List<String> text = new ArrayList<String>();
+    	String nextLine=null;
+    	
+    	for(;currentLine < lines.size(); currentLine++){
+    	
+    	   nextLine = lines.get(currentLine);
+    	   
+    	   if(nextLine.isEmpty()){
+    		   currentLine++;
+    		   break;
+    	   }
+    	
+    	   text.add(nextLine);
+    	}
+    	
+    	GoldLanguage goldLanguage = new GoldLanguage(aJCas);
+    	goldLanguage.setLanguage(text.get(0));
+    	//System.out.println(text.get(0));
+    	goldLanguage.addToIndexes();
+    	
+    	String document ="";
+    	
+    	for(int i=1;i<text.size();i++){
+    		String word = text.get(i);
+    		document+=word;
+    		
+       		 int start = document.length() - word.length();
+             int end = document.length();
+             Token t = new Token(aJCas, start, end);
+             t.addToIndexes();
+             
+    		document+=" ";
+    	}
+    	aJCas.setDocumentText(document.trim());
     }
 
 }

@@ -37,10 +37,7 @@ public class ReaderExample
     private List<String> lines;
     private int currentLine;
     
-    /* 
-     * initializes the reader
-     */
-    @Override
+    //initializes the reader
     public void initialize(UimaContext context) throws ResourceInitializationException{
     	
         super.initialize(context);
@@ -54,27 +51,20 @@ public class ReaderExample
         }
     }
     
-    /* 
-     * true, if there is a next document, false otherwise
-     */
+    //true, if there is a next document, false otherwise
     public boolean hasNext() throws IOException, CollectionException{
-        return currentLine < lines.size();
+    	return currentLine < lines.size();
     }
     
-    /* 
-     * feeds the next document into the pipeline
-     */
-    @Override
-    public void getNext(JCas jcas)
-        throws IOException, CollectionException
-    {
+    //feeds the next document into the pipeline
+    public void getNext(JCas jcas)throws IOException, CollectionException{
+    	
         // split line into gold standard language and actual text
         String[] parts = lines.get(currentLine).split("#");
         
         // it is always good to do some sanity checks
-        if (parts.length != 2) {
-            throw new IOException("Wrong line format: " + lines.get(currentLine));
-        }
+        if (parts.length != 2) 
+        	throw new IOException("Wrong line format: " + lines.get(currentLine));
         
         // add gold standard value as annotation
         GoldLanguage goldLanguage = new GoldLanguage(jcas);
@@ -86,13 +76,9 @@ public class ReaderExample
         
         currentLine++;
     }
-
-    /* 
-     * informs the pipeline about the current progress
-     */
     
-    public Progress[] getProgress()
-    {
+    //informs the pipeline about the current progress
+    public Progress[] getProgress(){
         return new Progress[] { new ProgressImpl(currentLine, lines.size(), "lines") };
     }
 }
