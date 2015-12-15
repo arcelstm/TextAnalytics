@@ -4,6 +4,13 @@ import org.apache.uima.fit.component.CasDumpWriter;
 import org.apache.uima.fit.factory.AnalysisEngineFactory;
 import org.apache.uima.fit.factory.CollectionReaderFactory;
 import org.apache.uima.fit.pipeline.SimplePipeline;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.apache.uima.analysis_component.AnalysisComponent;
 
 import de.tudarmstadt.ukp.dkpro.core.snowball.SnowballStemmer;
@@ -35,7 +42,9 @@ public class BasicPipeline{
                 AnalysisEngineFactory.createEngineDescription(SnowballStemmer.class,SnowballStemmer.PARAM_LANGUAGE,"en")
                 //AnalysisEngineFactory.createEngineDescription(TreeTaggerPosTagger.class),
                 //AnalysisEngineFactory.createEngineDescription(CasDumpWriter.class)
-
         );
+                
+                  
+        
     }
 }

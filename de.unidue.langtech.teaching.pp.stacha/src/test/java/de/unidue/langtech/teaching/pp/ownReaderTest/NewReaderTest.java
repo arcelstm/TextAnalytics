@@ -32,7 +32,7 @@ public class NewReaderTest
             assertFalse(jcas.getDocumentText().isEmpty());
         }
     }
-
+    
     @Test
     public void testExistenceOfGoldAnnotation()
         throws Exception
@@ -144,7 +144,7 @@ public class NewReaderTest
         }
 
     }
-
+    
     private String getText(List<Token> aTokens, int idx)
     {
         return aTokens.get(idx).getCoveredText();
