@@ -27,7 +27,6 @@ public class NewReader
     private List<String> lines;
     private int currentLine;
   
-
     public void initialize(UimaContext context) throws ResourceInitializationException{
         super.initialize(context);
 
