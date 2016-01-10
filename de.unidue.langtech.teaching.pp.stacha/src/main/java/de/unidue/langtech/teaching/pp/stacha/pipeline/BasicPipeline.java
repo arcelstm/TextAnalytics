@@ -4,11 +4,13 @@ import org.apache.uima.fit.component.CasDumpWriter;
 import org.apache.uima.fit.factory.AnalysisEngineFactory;
 import org.apache.uima.fit.factory.CollectionReaderFactory;
 import org.apache.uima.fit.pipeline.SimplePipeline;
+
 import org.apache.uima.analysis_component.AnalysisComponent;
 
+import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.StopWord;
 import de.tudarmstadt.ukp.dkpro.core.snowball.SnowballStemmer;
+import de.tudarmstadt.ukp.dkpro.core.stopwordremover.StopWordRemover;
 import de.tudarmstadt.ukp.dkpro.core.tokit.BreakIteratorSegmenter;
-import de.tudarmstadt.ukp.dkpro.core.treetagger.TreeTaggerPosTagger;
 import de.unidue.langtech.teaching.pp.ownReaderTest.NewReaderSolution;
 import de.unidue.langtech.teaching.pp.ownReaderTest.NewReaderTest;
 import de.unidue.langtech.teaching.pp.stacha.BaselineExample;
@@ -19,6 +21,8 @@ import de.unidue.langtech.teaching.pp.stacha.newType.LetterAnnotator;
 public class BasicPipeline{
 	
     public static void main(String[] args) throws Exception{
+    	
+  
     	
         SimplePipeline.runPipeline(
         		
@@ -31,11 +35,11 @@ public class BasicPipeline{
                 AnalysisEngineFactory.createEngineDescription(BaselineExample.class,BaselineExample.PARAM_MESSAGE, "BaselineExample.class,BaselineExample.PARAM_MESSAGE"),
                 AnalysisEngineFactory.createEngineDescription(LetterAnnotator.class),
                 AnalysisEngineFactory.createEngineDescription(EvaluatorExample.class),
-                //AnalysisEngineFactory.createEngineDescription(OpenNlpPosTagger.class),
-                AnalysisEngineFactory.createEngineDescription(SnowballStemmer.class,SnowballStemmer.PARAM_LANGUAGE,"en")
-                //AnalysisEngineFactory.createEngineDescription(TreeTaggerPosTagger.class),
-                //AnalysisEngineFactory.createEngineDescription(CasDumpWriter.class)
-
+                AnalysisEngineFactory.createEngineDescription(SnowballStemmer.class,SnowballStemmer.PARAM_LANGUAGE,"en"),
+               // AnalysisEngineFactory.createEngineDescription(CasDumpWriter.class),
+                AnalysisEngineFactory.createEngineDescription(StopWordRemover.class, StopWordRemover.PARAM_MODEL_LOCATION,"src/main/resources/txt/stop.txt")
         );
+                
+        
     }
 }
