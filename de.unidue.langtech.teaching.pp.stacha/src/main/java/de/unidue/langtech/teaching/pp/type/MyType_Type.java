@@ -50,6 +50,7 @@ public class MyType_Type extends Annotation_Type {
   final Feature casFeat_countLetter;
   /** @generated */
   final int     casFeatCode_countLetter;
+public int casFeatCode_countLetterE;
   /** @generated
    * @param addr low level Feature Structure reference
    * @return the feature value 

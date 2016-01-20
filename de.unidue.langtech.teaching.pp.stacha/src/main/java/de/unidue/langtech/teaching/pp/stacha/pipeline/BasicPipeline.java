@@ -23,14 +23,14 @@ public class BasicPipeline{
                         ReaderExample.class,
                         ReaderExample.PARAM_INPUT_FILE, "src/test/resources/test/input.txt"
                 ),
-                //AnalysisEngineFactory.createEngineDescription(BaselineExample.class),
-                AnalysisEngineFactory.createEngineDescription(BreakIteratorSegmenter.class),             
-                AnalysisEngineFactory.createEngineDescription(BaselineExample.class,BaselineExample.PARAM_MESSAGE, "BaselineExample.class,BaselineExample.PARAM_MESSAGE"),
-                AnalysisEngineFactory.createEngineDescription(LetterAnnotator.class),
-                AnalysisEngineFactory.createEngineDescription(EvaluatorExample.class),
-                AnalysisEngineFactory.createEngineDescription(SnowballStemmer.class,SnowballStemmer.PARAM_LANGUAGE,"en"),
-                //AnalysisEngineFactory.createEngineDescription(CasDumpWriter.class),
-                AnalysisEngineFactory.createEngineDescription(StopWordRemover.class, StopWordRemover.PARAM_MODEL_LOCATION,"src/main/resources/txt/stop.txt")
+              //  AnalysisEngineFactory.createEngineDescription(BaselineExample.class),
+                AnalysisEngineFactory.createEngineDescription(BreakIteratorSegmenter.class),            
+               AnalysisEngineFactory.createEngineDescription(BaselineExample.class,BaselineExample.PARAM_MESSAGE, "BaselineExample.class,BaselineExample.PARAM_MESSAGE")
+               // ,AnalysisEngineFactory.createEngineDescription(LetterAnnotator.class)
+             ,  AnalysisEngineFactory.createEngineDescription(EvaluatorExample.class)
+              ,  AnalysisEngineFactory.createEngineDescription(SnowballStemmer.class,SnowballStemmer.PARAM_LANGUAGE,"en")
+              	//AnalysisEngineFactory.createEngineDescription(CasDumpWriter.class)
+              //AnalysisEngineFactory.createEngineDescription(StopWordRemover.class, StopWordRemover.PARAM_MODEL_LOCATION,"src/main/resources/txt/stop.txt")
         );
                 
         
