@@ -2,7 +2,7 @@ package de.unidue.langtech.teaching.pp.ownReaderTest;
 
 import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngine;
 import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngineDescription;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.apache.uima.analysis_engine.AnalysisEngine;
 import org.apache.uima.analysis_engine.AnalysisEngineDescription;
@@ -19,7 +19,8 @@ public class CountTest {
 	@Test
 	public void testCountE() throws Exception{
 
-		String text = "Where's the peck of pickled peppers Peter Piper picked?";
+		String text = "Peter Piper picked a peck of pickled peppers.";
+
 
 		// We don't have a pipeline here,
 		// thus we create an empty document by hand,
@@ -39,7 +40,7 @@ public class CountTest {
 		MyType detectedLang = JCasUtil.selectSingle(jcas,
 				MyType.class);
 
-		assertEquals(11, detectedLang.getCountLetter());
+		assertEquals(8, detectedLang.getCountLetter());
 
 	 }
 

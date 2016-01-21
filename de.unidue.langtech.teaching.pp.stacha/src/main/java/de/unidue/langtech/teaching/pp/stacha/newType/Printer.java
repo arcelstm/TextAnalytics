@@ -6,7 +6,10 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.fit.component.JCasAnnotator_ImplBase;
 import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.jcas.tcas.Annotation;
 
+import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
+import de.tudarmstadt.ukp.dkpro.core.tokit.BreakIteratorSegmenter;
 import de.unidue.langtech.teaching.pp.type.DetectedLanguage;
 import de.unidue.langtech.teaching.pp.type.GoldLanguage;
 import de.unidue.langtech.teaching.pp.type.MyType;
@@ -18,7 +21,11 @@ public class Printer
     @Override
     public void process(JCas jcas)
         throws AnalysisEngineProcessException
-    {
+    { 
+    	//System.out.println(jcas.getDocumentText());
+    	
+    	//System.out.println(BreakIteratorSegmenter.PARAM_WRITE_SENTENCE);
+    	
         // This API always returns a collection even if you know that there should be only one
         Collection<MyType> letterECount = JCasUtil.select(jcas, MyType.class);
 
@@ -32,6 +39,8 @@ public class Printer
             System.out.println("Number of e/E: " + t.getCountLetter());
         }
 
+       
+        
     }
 
 }

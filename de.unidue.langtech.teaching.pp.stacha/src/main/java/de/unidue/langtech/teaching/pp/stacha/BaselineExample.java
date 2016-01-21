@@ -36,6 +36,8 @@ public class BaselineExample extends JCasAnnotator_ImplBase{
         for(Token t:tokens){
         	
         	String x = t.getCoveredText().toLowerCase();
+        	
+        	System.out.println(t.getCoveredText());
         	        	
           		if(x.equals("das"))lang="DE";
         		if(x.equals("devoirs"))lang="FR";
