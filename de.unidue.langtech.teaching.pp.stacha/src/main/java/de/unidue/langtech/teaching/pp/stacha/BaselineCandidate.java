@@ -28,11 +28,11 @@ public class BaselineCandidate extends JCasAnnotator_ImplBase{
         	
         	String x = t.getCoveredText().toLowerCase();
         	
-        	if(x.equals(",")){
-        		tokens.remove(t.getCoveredText());
+        	if (!(x.equals(","))){
+        		System.out.println(t.getCoveredText());
         	}
         	
-        	System.out.println(t.getCoveredText());
+        	
         }
 		
 	}

@@ -6,7 +6,7 @@
   <vendor/>
   <types>
     <typeDescription>
-      <name>de.unidue.langtech.teaching.pp.type.Keyphrase</name>
+      <name>KeyphraseCandidate</name>
       <description/>
       <supertypeName>uima.tcas.Annotation</supertypeName>
     </typeDescription>
