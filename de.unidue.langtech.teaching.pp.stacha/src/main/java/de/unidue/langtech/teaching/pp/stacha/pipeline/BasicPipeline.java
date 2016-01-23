@@ -8,6 +8,7 @@ import org.apache.uima.fit.pipeline.SimplePipeline;
 import de.tudarmstadt.ukp.dkpro.core.snowball.SnowballStemmer;
 import de.tudarmstadt.ukp.dkpro.core.stopwordremover.StopWordRemover;
 import de.tudarmstadt.ukp.dkpro.core.tokit.BreakIteratorSegmenter;
+
 import de.unidue.langtech.teaching.pp.stacha.BaselineExample;
 import de.unidue.langtech.teaching.pp.stacha.EvaluatorExample;
 import de.unidue.langtech.teaching.pp.stacha.ReaderExample;

@@ -10,6 +10,9 @@ import org.apache.uima.fit.descriptor.ConfigurationParameter;
 import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
+import opennlp.tools.postag.POSModel;
+import opennlp.tools.postag.POSTagger;
+import opennlp.tools.postag.POSTaggerME;
 
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 import de.unidue.langtech.teaching.pp.type.DetectedLanguage;
@@ -21,6 +24,7 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
 	(name= PARAM_LANGUAGE, mandatory=false, defaultValue= "en")
 	protected String language;
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void process(JCas jcas) throws AnalysisEngineProcessException {
 
@@ -29,12 +33,12 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
         Collection<Token> tokens = JCasUtil.select(jcas, Token.class);
         DetectedLanguage languageAnno = new DetectedLanguage(jcas);
 		
+        
+        int i=0;
         for(Token t:tokens){
-        	POS posTag = null;
-			//POS posAnno = jcas.createAnnotation("NN");
-        	//t.setPos(posAnno);
-        	//t.setPos(posTag);
-        	System.out.println(t.getPos());
+        	if(t.getEnd()-t.getStart()>2)
+        	System.out.println(t.getCoveredText());
+        	i++;
         }
         
         languageAnno.setLanguage(language);    

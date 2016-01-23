@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
-  <name>LanguageType</name>
+  <name>Keyphrase</name>
   <description/>
-  <version>1.0</version>
+  <version/>
   <vendor/>
   <types>
     <typeDescription>
-      <name>de.unidue.langtech.teaching.pp.type.Keyword</name>
+      <name>Keyphrase</name>
       <description/>
       <supertypeName>uima.tcas.Annotation</supertypeName>
-      <features>
-        <featureDescription>
-          <name>Candidate</name>
-          <description/>
-          <rangeTypeName>uima.tcas.Annotation</rangeTypeName>
-        </featureDescription>
-      </features>
     </typeDescription>
-    </types>
+  </types>
 </typeSystemDescription>
