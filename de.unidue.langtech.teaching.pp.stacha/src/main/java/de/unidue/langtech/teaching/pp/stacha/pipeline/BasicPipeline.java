@@ -37,7 +37,7 @@ public class BasicPipeline{
            
               
               	
-             //AnalysisEngineFactory.createEngineDescription(CasDumpWriter.class)
+             ,AnalysisEngineFactory.createEngineDescription(CasDumpWriter.class)
         );
                 
         

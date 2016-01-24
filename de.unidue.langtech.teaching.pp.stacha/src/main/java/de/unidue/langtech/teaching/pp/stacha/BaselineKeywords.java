@@ -36,9 +36,12 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
         
         int i=0;
         for(Token t:tokens){
-        	if(t.getEnd()-t.getStart()>2)
-        	System.out.println(t.getCoveredText());
-        	i++;
+        	//if(t.getEnd()-t.getStart()>2)
+        	if(t.getPos().getPosValue().contains("NN")){
+        		System.out.println(t.getCoveredText());
+        		System.out.println(t.getPos());
+        		i++;
+        	}
         }
         
         languageAnno.setLanguage(language);    
