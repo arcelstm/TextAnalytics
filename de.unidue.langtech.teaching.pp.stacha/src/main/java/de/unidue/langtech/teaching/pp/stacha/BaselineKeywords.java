@@ -24,7 +24,6 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
 	(name= PARAM_LANGUAGE, mandatory=false, defaultValue= "en")
 	protected String language;
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void process(JCas jcas) throws AnalysisEngineProcessException {
 
@@ -33,7 +32,6 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
         Collection<Token> tokens = JCasUtil.select(jcas, Token.class);
         DetectedLanguage languageAnno = new DetectedLanguage(jcas);
 		
-        
         int i=0;
         for(Token t:tokens){
         	//if(t.getEnd()-t.getStart()>2)
