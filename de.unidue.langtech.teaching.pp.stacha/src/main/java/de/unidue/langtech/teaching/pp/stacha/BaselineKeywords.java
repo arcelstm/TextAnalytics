@@ -23,17 +23,16 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
 	@Override
 	public void process(JCas jcas) throws AnalysisEngineProcessException {
 
-		System.out.println("Document is: " + jcas.getDocumentText());
+		System.out.println("Document is: " + jcas.getDocumentText()+"\n");
         
         Collection<Token> tokens = JCasUtil.select(jcas, Token.class);
         DetectedLanguage languageAnno = new DetectedLanguage(jcas);
 		
         int i=0;
         for(Token t:tokens){
-        	//if(t.getEnd()-t.getStart()>2)
+        	if(t.getEnd()-t.getStart()>1)
         //	if(t.getPos().getPosValue().contains("NN")){
-        		System.out.println(t.getCoveredText());
-        		System.out.println(t.getPos().getPosValue()+"\n---");
+        		System.out.println("(" + t.getPos().getPosValue()+") " + t.getCoveredText() +"\n---");
         		i++;
         //	}
         }

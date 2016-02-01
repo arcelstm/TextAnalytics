@@ -1,6 +1,0 @@
-EN#Peter went into the office before they arrived there.
-FR#Si tu finis tes devoirs, je te donnerai des bonbons.
-DE#Das ist ein schon recht langes deutsches Beispiel.
-ES#Son las diez en punto. Las siete y media.
-IT#Mi piacerebbe visitare l'Italia un giorno di questi!
-SE#Envar har rätt till undervisning.
