@@ -9,10 +9,6 @@ import org.apache.uima.fit.component.JCasAnnotator_ImplBase;
 import org.apache.uima.fit.descriptor.ConfigurationParameter;
 import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
-import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
-import opennlp.tools.postag.POSModel;
-import opennlp.tools.postag.POSTagger;
-import opennlp.tools.postag.POSTaggerME;
 
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 import de.unidue.langtech.teaching.pp.type.DetectedLanguage;
@@ -35,11 +31,11 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
         int i=0;
         for(Token t:tokens){
         	//if(t.getEnd()-t.getStart()>2)
-        	if(t.getPos().getPosValue().contains("NN")){
+        //	if(t.getPos().getPosValue().contains("NN")){
         		System.out.println(t.getCoveredText());
-        		System.out.println(t.getPos());
+        		System.out.println(t.getPos().getPosValue()+"\n---");
         		i++;
-        	}
+        //	}
         }
         
         languageAnno.setLanguage(language);    

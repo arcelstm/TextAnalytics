@@ -21,7 +21,6 @@ public class CountTest {
 
 		String text = "Peter Piper picked a peck of pickled peppers.";
 
-
 		// We don't have a pipeline here,
 		// thus we create an empty document by hand,
 		// the following utility-method call helps us
@@ -37,8 +36,7 @@ public class CountTest {
 		AnalysisEngine countE = createEngine(countLetterE);
 		countE.process(jcas);
 
-		MyType detectedLang = JCasUtil.selectSingle(jcas,
-				MyType.class);
+		MyType detectedLang = JCasUtil.selectSingle(jcas,MyType.class);
 
 		assertEquals(8, detectedLang.getCountLetter());
 

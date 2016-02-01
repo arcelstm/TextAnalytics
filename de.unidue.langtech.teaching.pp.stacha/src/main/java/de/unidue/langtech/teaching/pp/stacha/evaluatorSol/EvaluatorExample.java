@@ -57,7 +57,10 @@ public class EvaluatorExample
         throws AnalysisEngineProcessException
     {
         super.collectionProcessComplete();
-        
+        int x= nrOfDocuments-correct;
+        if(x!=0){
+        	System.err.println(x+" non english documents");
+        }
         System.out.println(correct + " out of " + nrOfDocuments + " are correct.");
     }
 }
