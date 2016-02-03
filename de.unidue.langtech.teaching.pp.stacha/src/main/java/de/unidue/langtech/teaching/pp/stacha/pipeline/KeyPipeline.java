@@ -17,7 +17,6 @@ import de.tudarmstadt.ukp.dkpro.keyphrases.core.postprocessing.KeyphraseMerger;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.ranking.PositionRanking;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.reader.KeyphraseReader;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.type.Keyphrase;
-import de.tudarmstadt.ukp.dkpro.keyphrases.ranking.NodeDegreeRanking;
 import de.tudarmstadt.ukp.dkpro.keyphrases.ranking.PageRankRanking;
 import de.tudarmstadt.ukp.dkpro.keyphrases.textgraphs.CooccurrenceGraph;
 import de.unidue.langtech.teaching.pp.stacha.BaselineKeywords;
@@ -52,7 +51,6 @@ public class KeyPipeline {
                 ,AnalysisEngineFactory.createEngineDescription(KeyphraseMerger.class) 
                 ,AnalysisEngineFactory.createEngineDescription(BaselineKeywords.class, BaselineKeywords.PARAM_LANGUAGE, "en")
                 //,AnalysisEngineFactory.createEngineDescription(EvaluatorExample.class)
-                
                 
          );       
 	}
