@@ -10,15 +10,9 @@ import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 
-<<<<<<< HEAD
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.type.Keyphrase;
 import de.unidue.langtech.teaching.pp.type.DetectedLanguage;
-=======
-import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
-import de.tudarmstadt.ukp.dkpro.keyphrases.core.type.Keyphrase;
-import de.unidue.langtech.teaching.pp.type.DetectedLanguage;
->>>>>>> branch 'master' of https://github.com/marciiipan/TextAnalyticsStacha.git
 
 public class BaselineKeywords extends JCasAnnotator_ImplBase{
 
@@ -33,15 +27,9 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
 
 		System.out.println("Document is: " + jcas.getDocumentText());
         
-<<<<<<< HEAD
         Collection<Token> tokens = JCasUtil.select(jcas, Token.class);
        // Collection<Keyphrase> candidates = JCasUtil.select(jcas, Keyphrase.class);
         Collection<Keyphrase> keyphrases = JCasUtil.select(jcas, Keyphrase.class);
-=======
-        Collection<Token> tokens = JCasUtil.select(jcas, Token.class);
-       // Collection<Keyphrase> candidates = JCasUtil.select(jcas, Keyphrase.class);
-        Collection<Keyphrase> keyphrases = JCasUtil.select(jcas, Keyphrase.class);
->>>>>>> branch 'master' of https://github.com/marciiipan/TextAnalyticsStacha.git
 		
 //        int i=0;
 //        for(Token t:tokens){
@@ -66,11 +54,7 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
         			(t.getPos().getPosValue().contains("NN") || t.getPos().getPosValue().contains("JJ"))) {
                 		System.out.println("---\n(" + t.getPos().getPosValue()+") " + t.getCoveredText() +" "+ k.getScore());
                 }
-<<<<<<< HEAD
         }
-=======
-        }
->>>>>>> branch 'master' of https://github.com/marciiipan/TextAnalyticsStacha.git
 	}
 
 }
