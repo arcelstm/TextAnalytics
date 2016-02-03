@@ -10,8 +10,6 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
-import de.unidue.langtech.teaching.pp.type.DetectedLanguage;
-import de.unidue.langtech.teaching.pp.type.Keyphrase;
 
 public class BaselineKeywords extends JCasAnnotator_ImplBase{
 
@@ -27,7 +25,6 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
 		System.out.println("Document is: " + jcas.getDocumentText());
         
         Collection<Token> tokens = JCasUtil.select(jcas, Token.class);
-        DetectedLanguage languageAnno = new DetectedLanguage(jcas);
 		
 //        int i=0;
 //        for(Token t:tokens){
@@ -56,12 +53,7 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
         	
         	i++;
         }
-        
-        
-        
-        languageAnno.setLanguage(language);    
-        languageAnno.addToIndexes();
-    
+            
 	}
 
 }
