@@ -44,11 +44,12 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
         	if(x.getEnd()-x.getStart()>1)
         		
         	if(	((Token) x).getPos().getPosValue().contains("NN") || 
-        		((Token) x).getPos().getPosValue().contains("JJ") || 
-        		((Token) x).getPos().getPosValue().contains("V")){
-        		System.out.println("---\n(" + ((Token) x).getPos().getPosValue()+") " + x.getCoveredText());
+        		((Token) x).getPos().getPosValue().contains("JJ")) {
+        			System.out.println("---\n(" + ((Token) x).getPos().getPosValue()+") " + x.getCoveredText());
+
+        			//System.out.println(((Keyphrase) x).getScore());
         	}
-        	
+        	        	
         	//Keyphrase y = null;
 			//Keyphrase y = x.getCoveredText();
         	//System.out.println(y.getScore());
