@@ -46,15 +46,20 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
         	Keyphrase k= (Keyphrase) keyphrases.toArray()[i];
         	
         	if (t.getPos().getPosValue().equals("NNP")){
-        		k.setScore(k.getScore()+10);
+        		k.setScore(k.getScore()+4);
         	}
         	
-        		if(
-        			(k.getScore()>9) && 
-        			(t.getPos().getPosValue().contains("NN") || t.getPos().getPosValue().contains("JJ"))) {
-                		System.out.println("---\n(" + t.getPos().getPosValue()+") " + t.getCoveredText() +" "+ k.getScore());
-                }
+        	if(	(k.getScore()>5) &&
+        		(t.getPos().getPosValue().contains("NN") || t.getPos().getPosValue().contains("JJ"))) {
+                	System.out.println(//"---\n(" + t.getPos().getPosValue()+") " + 
+        		k.getCoveredText()+" "+ k.getScore());
+            }
+        
         }
+	
+     	/*for(Keyphrase k:keyphrases){
+     		if(k.getScore()>5)
+		  System.out.println(k.getCoveredText()+ " " + k.getScore());
+		}*/
 	}
-
 }

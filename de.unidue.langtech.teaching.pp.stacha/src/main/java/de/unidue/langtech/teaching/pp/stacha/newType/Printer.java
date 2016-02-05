@@ -10,6 +10,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 import de.tudarmstadt.ukp.dkpro.core.tokit.BreakIteratorSegmenter;
+import de.tudarmstadt.ukp.dkpro.keyphrases.core.type.Keyphrase;
 import de.unidue.langtech.teaching.pp.type.DetectedLanguage;
 import de.unidue.langtech.teaching.pp.type.GoldLanguage;
 import de.unidue.langtech.teaching.pp.type.MyType;
@@ -25,19 +26,16 @@ public class Printer
     	//System.out.println(jcas.getDocumentText());
     	
     	//System.out.println(BreakIteratorSegmenter.PARAM_WRITE_SENTENCE);
+
+    	Collection<Keyphrase> keyphrases = JCasUtil.select(jcas, Keyphrase.class);
+    	Collection<Token> tokens = JCasUtil.select(jcas, Token.class);
+
+    	for(Keyphrase k:keyphrases){
+    		if(k.getScore()>0)
+    		System.out.println(k.getKeyphrase()+ " " +k.getScore());
+    	}
     	
-        // This API always returns a collection even if you know that there should be only one
-        Collection<MyType> letterECount = JCasUtil.select(jcas, MyType.class);
-
-        // There is a special API for the case you know that there is exactly one annotation
-        GoldLanguage gold = JCasUtil.selectSingle(jcas, GoldLanguage.class);
-        DetectedLanguage detected = JCasUtil.selectSingle(jcas, DetectedLanguage.class);
-
-        for (MyType t : letterECount) {
-            System.out.println("Detected: " + detected.getLanguage() + " Gold:"
-                    + gold.getLanguage());
-            System.out.println("Number of e/E: " + t.getCountLetter());
-        }
+    	System.out.println(jcas.getDocumentText());
 
        
         

@@ -3,13 +3,3 @@ The wacky experiment was launched because current data centers are woefully inef
 The ocean can solve those problems. Ocean currents can produce enough energy to power the sub-sea data centers. The cold ocean floor sufficiently cools the computing components inside the pod. And since most people live near the ocean, placing data centers under water could potentially increase the speed at which customers could access the information stored in Microsoft's cloud.
 The experiment was so successful that Microsoft operated the underwater data center for 75 days longer than it had planned to. It even began running actual customers' workloads on it, according to Peter Lee, corporate vice president of Microsoft Research NExT.
 Microsoft has since fished the experimental data center out of the water for analysis. The next step is to get a larger pod, with about four times the computing power, under the ocean for testing.
-Unlike the first experiment, the next pod will also be equipped with turbines, which will convert the ocean's currents into electricity.
-It's not clear when, if ever, underwater data centers will become a viable product. But Microsoft is determined to try by taking small, incremental steps forward.
-"Our first experiment was like dipping our pinkie toe in the water, and now we're going for the big toe," Lee said.
-Though Microsoft (MSFT, Tech30) is still analyzing the environmental impacts of the study. Data centers are both hot and loud, which could have deleterious effects on ocean life.
-Microsoft claims that the underwater data centers' net heat will be zero, since it is completely powered by the ocean itself -- a confusing, but scientifically accurate, theory. It also found that the noise its underwater data center produced was drowned out by nearby shrimp and crabs.
-The data centers are also built from recyclable materials, and Microsoft believes that the total carbon footprint of underwater data centers will be "dramatically lower" than current land-based centers.
-Given the growth in the cloud, industry analysts believe that most of the world's data centers have yet to be built. But building a data center takes at least two years -- an eternity in the tech industry.
-As a result, Microsoft builds its data centers with the future in mind, installing far more computing power and space that it currently needs.
-Lee believes that going under water can shift the building of data centers from construction projects to manufacturing jobs.
-"What if we could pump out these pods on an assembly line?" he pondered. "We could deliver a data center, from conception to operation, in 90 days. That's dramatically different than what's happening today."
