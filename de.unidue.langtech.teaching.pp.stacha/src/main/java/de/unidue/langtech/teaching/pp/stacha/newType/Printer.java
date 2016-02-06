@@ -8,12 +8,9 @@ import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 
+import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
-import de.tudarmstadt.ukp.dkpro.core.tokit.BreakIteratorSegmenter;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.type.Keyphrase;
-import de.unidue.langtech.teaching.pp.type.DetectedLanguage;
-import de.unidue.langtech.teaching.pp.type.GoldLanguage;
-import de.unidue.langtech.teaching.pp.type.MyType;
 
 public class Printer
     extends JCasAnnotator_ImplBase
@@ -23,21 +20,38 @@ public class Printer
     public void process(JCas jcas)
         throws AnalysisEngineProcessException
     { 
-    	//System.out.println(jcas.getDocumentText());
-    	
-    	//System.out.println(BreakIteratorSegmenter.PARAM_WRITE_SENTENCE);
-
     	Collection<Keyphrase> keyphrases = JCasUtil.select(jcas, Keyphrase.class);
     	Collection<Token> tokens = JCasUtil.select(jcas, Token.class);
+    	Collection<Sentence> sentences = JCasUtil.select(jcas, Sentence.class);
 
-    	for(Keyphrase k:keyphrases){
-    		if(k.getScore()>0)
-    		System.out.println(k.getKeyphrase()+ " " +k.getScore());
+    	 for(Keyphrase k:keyphrases){
+    		if(k.getScore()>0 && !(k.getCoveredText().contains(".")))
+    		//if(k.getScore()>0)
+    		System.out.println(k.getCoveredText()+ " - " + k.getScore()*100);
     	}
     	
-    	System.out.println(jcas.getDocumentText());
-
-       
+    	    	
+        for (Sentence s : sentences) { 
+        
+        	
+        	s.getCoveredText();
+        }	
+        	for (Token t:tokens){
+        		if(t.getPos().getPosValue().contains("NN")||t.getPos().getPosValue().contains("VB")||t.getPos().getPosValue().contains("J")){
+        			//System.out.println(t.getCoveredText()); 
+        		}
+        		
+        
+        	
+    	for(int i=0; i <tokens.size();i++){
+            
+        	Token t1= (Token) tokens.toArray()[i];
+        	
+        	
+    	}
+    	
+      } 
+    	
         
     }
 

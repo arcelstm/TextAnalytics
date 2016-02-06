@@ -1,5 +1,12 @@
-Microsoft just finished a three-month experiment operating an underwater data center. A server rack with the power of about 300 PCs was placed into a water-tight steel cylinder and lowered into the ocean off the coast of central California.
-The wacky experiment was launched because current data centers are woefully inefficient. They're built where energy and land are cheap (not close to where people actually live). And they waste so much energy cooling their massive computers.
-The ocean can solve those problems. Ocean currents can produce enough energy to power the sub-sea data centers. The cold ocean floor sufficiently cools the computing components inside the pod. And since most people live near the ocean, placing data centers under water could potentially increase the speed at which customers could access the information stored in Microsoft's cloud.
-The experiment was so successful that Microsoft operated the underwater data center for 75 days longer than it had planned to. It even began running actual customers' workloads on it, according to Peter Lee, corporate vice president of Microsoft Research NExT.
-Microsoft has since fished the experimental data center out of the water for analysis. The next step is to get a larger pod, with about four times the computing power, under the ocean for testing.
+
+Our lives require serious closet space. Your email provider, Facebook, Netflix, and just about everything we take for granted requires vast amounts of storage. Microsoft alone operates well over a hundred data center world wide and those are hardly sufficient forcing the company to construct new ones each year. The company has spent nearly $20 billion on a data center system that gives the world access to over 200 online offerings that Microsoft gives its customers.
+
+The prototype of Microsoft's first underwater data center was named "Leona Philpot" after a character in the company's wildly successful Halo series of video games and was a product of a research paper from 2014 written by a number of Microsoft data center engineers including one with submariner experience.
+
+The "Leona Philpot" is roughly eight feet in diameter and the steel capsule was launched off the coast of California near San Luis Obispo where it was placed on the ocean's floor 30 feet underwater for its 105 day test. By all accounts, that test was considerably more successful than Microsoft anticipated.
+
+Clearly it was impossible to man a tiny capsule 30 feet underwater and was operated remotely from a Microsoft campus. In order to run the center, the engineers behind the capsule needed to observe what was happening inside and installed with over a hundred sensors to monitor pressure, motion, humidity and a litany of other factors during testing.
+
+The 105-day trial was not planned for that extended of a duration but based on the success enjoyed by the prototype the team extended its undersea experiment and even ran parts of Microsoft's Azure cloud computing service while submerged.
+
+Given the success of the project, Microsoft engineers are working with what they know and what they discovered to build another data center to be placed underwater that is over three times the size of its prototype.

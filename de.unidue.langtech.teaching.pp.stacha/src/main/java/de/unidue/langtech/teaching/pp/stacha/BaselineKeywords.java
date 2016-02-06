@@ -43,17 +43,17 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
         for(int i=0; i <tokens.size();i++){
         
         	Token t= (Token) tokens.toArray()[i];
-        	Keyphrase k= (Keyphrase) keyphrases.toArray()[i];
+        	//Keyphrase k= (Keyphrase) keyphrases.toArray()[i];
         	
-        	if (t.getPos().getPosValue().equals("NNP")){
-        		k.setScore(k.getScore()+4);
-        	}
+        //	if (t.getPos().getPosValue().equals("NNP")){
+        	//	k.setScore(k.getScore()+4);
+        	//}
         	
-        	if(	(k.getScore()>5) &&
-        		(t.getPos().getPosValue().contains("NN") || t.getPos().getPosValue().contains("JJ"))) {
-                	System.out.println(//"---\n(" + t.getPos().getPosValue()+") " + 
-        		k.getCoveredText()+" "+ k.getScore());
-            }
+        	//if(	//(k.getScore()>5) &&
+        		//(t.getPos().getPosValue().contains("NN") || t.getPos().getPosValue().contains("JJ"))) {
+                System.out.println("---\n" + t.getCoveredText() +" ("+ t.getPos().getPosValue()+") " ) ;
+        		//k.getCoveredText()+" "+ k.getScore());
+            //}
         
         }
 	
@@ -61,5 +61,6 @@ public class BaselineKeywords extends JCasAnnotator_ImplBase{
      		if(k.getScore()>5)
 		  System.out.println(k.getCoveredText()+ " " + k.getScore());
 		}*/
+        
 	}
 }
