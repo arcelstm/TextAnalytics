@@ -25,9 +25,9 @@ public class Printer
     	Collection<Sentence> sentences = JCasUtil.select(jcas, Sentence.class);
 
     	 for(Keyphrase k:keyphrases){
-    		if(k.getScore()>0 && !(k.getCoveredText().contains(".")))
+    		//if(k.getScore()>0 && !(k.getCoveredText().contains(".")))
     		//if(k.getScore()>0)
-    		System.out.println(k.getCoveredText()+ " - " + k.getScore()*100);
+    		System.out.println(k.getCoveredText()+ " - " + k.getScore());
     	}
     	
     	    	
@@ -38,7 +38,7 @@ public class Printer
         }	
         	for (Token t:tokens){
         		if(t.getPos().getPosValue().contains("NN")||t.getPos().getPosValue().contains("VB")||t.getPos().getPosValue().contains("J")){
-        			//System.out.println(t.getCoveredText()); 
+        		//	System.out.println(t.getCoveredText()); 
         		}
         		
         
