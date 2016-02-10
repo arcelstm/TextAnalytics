@@ -42,6 +42,8 @@ import de.tudarmstadt.ukp.dkpro.keyphrases.textgraphs.util.PageRank;
 import de.unidue.langtech.teaching.pp.stacha.BaselineKeywords;
 import de.unidue.langtech.teaching.pp.stacha.newType.Printer;
 import de.unidue.langtech.teaching.pp.stacha.newType.Test;
+import edu.stanford.nlp.dcoref.CoNLL2011DocumentReader.NamedEntityAnnotation;
+import edu.stanford.nlp.ling.CoreAnnotations.NamedEntityTagAnnotation;
 
 public class KeyPipeline {
 
@@ -61,7 +63,6 @@ public class KeyPipeline {
                       
                ,AnalysisEngineFactory.createEngineDescription(OpenNlpPosTagger.class,OpenNlpPosTagger.PARAM_LANGUAGE, "en")
                
-             ,AnalysisEngineFactory.createEngineDescription(OpenNlpNameFinder.class,OpenNlpNameFinder.PARAM_LANGUAGE,"en")
           	,AnalysisEngineFactory.createEngineDescription(CooccurrenceGraph.class,CooccurrenceGraph.PARAM_FEATURE_PATH,Token.class)
             ,AnalysisEngineFactory.createEngineDescription(PageRankRanking.class,PageRankRanking.PARAM_WEIGHTED,true)
 

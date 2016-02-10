@@ -26,7 +26,7 @@ public class Printer
 
     	 for(Keyphrase k:keyphrases){
     		//if(k.getScore()>0 && !(k.getCoveredText().contains(".")))
-    		if(k.getScore()>1 && (k.getEnd()-k.getStart())>8)
+    		if(k.getScore()>1 && (k.getEnd()-k.getStart())>7)
     		System.out.println(k.getKeyphrase()+ " - " + k.getScore());
     		
     	}
@@ -35,7 +35,7 @@ public class Printer
         for (Sentence s : sentences) { 
         
         	
-        	s.getCoveredText();
+        	System.out.println(s.getCoveredText());
         }	
         	for (Token t:tokens){
         		if(t.getPos().getPosValue().contains("NN")||t.getPos().getPosValue().contains("VB")||t.getPos().getPosValue().contains("J")){
