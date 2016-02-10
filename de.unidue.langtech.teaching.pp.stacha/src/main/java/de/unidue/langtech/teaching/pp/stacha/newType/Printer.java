@@ -26,8 +26,9 @@ public class Printer
 
     	 for(Keyphrase k:keyphrases){
     		//if(k.getScore()>0 && !(k.getCoveredText().contains(".")))
-    		//if(k.getScore()>0)
-    		System.out.println(k.getCoveredText()+ " - " + k.getScore());
+    		if(k.getScore()>1 && (k.getEnd()-k.getStart())>8)
+    		System.out.println(k.getKeyphrase()+ " - " + k.getScore());
+    		
     	}
     	
     	    	
