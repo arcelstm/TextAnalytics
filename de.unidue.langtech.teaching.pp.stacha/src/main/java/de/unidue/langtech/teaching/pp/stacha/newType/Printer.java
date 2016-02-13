@@ -1,6 +1,12 @@
 package de.unidue.langtech.teaching.pp.stacha.newType;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.fit.component.JCasAnnotator_ImplBase;
@@ -23,33 +29,32 @@ public class Printer
     	Collection<Keyphrase> keyphrases = JCasUtil.select(jcas, Keyphrase.class);
     	Collection<Token> tokens = JCasUtil.select(jcas, Token.class);
     	Collection<Sentence> sentences = JCasUtil.select(jcas, Sentence.class);
+    	Map<String,Number> map = new HashMap<String, Number>();
 
     	 for(Keyphrase k:keyphrases){
     		//if(k.getScore()>0 && !(k.getCoveredText().contains(".")))
-    		if(k.getScore()>1 && (k.getEnd()-k.getStart())>7)
-    		System.out.println(k.getKeyphrase()+ " - " + k.getScore());
-    		
+    		//if(k.getScore()>1 && (k.getEnd()-k.getStart())>7)
+    		 map.put(k.getKeyphrase(),k.getScore());
+  		 }
+    	 
+    	 
+
+    		 for(Entry<String, Number> e: map.entrySet()){
+    			 System.out.println(e);
+	    		//System.out.println(k.getKeyphrase()+ " - " + k.getScore());
     	}
     	
     	    	
         for (Sentence s : sentences) { 
-        
-        	
-        	System.out.println(s.getCoveredText());
+        	//System.out.println(s.getCoveredText());
         }	
+        
         	for (Token t:tokens){
         		if(t.getPos().getPosValue().contains("NN")||t.getPos().getPosValue().contains("VB")||t.getPos().getPosValue().contains("J")){
         		//	System.out.println(t.getCoveredText()); 
         		}
         		
-        
-        	
-    	for(int i=0; i <tokens.size();i++){
-            
-        	Token t1= (Token) tokens.toArray()[i];
-        	
-        	
-    	}
+       
     	
       } 
     	
