@@ -6,12 +6,19 @@ import org.apache.uima.analysis_engine.AnalysisEngineDescription;
 import org.apache.uima.fit.factory.AnalysisEngineFactory;
 import org.apache.uima.fit.factory.CollectionReaderFactory;
 import org.apache.uima.fit.pipeline.SimplePipeline;
+import org.apache.uima.fit.util.JCasUtil;
 
+import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.ADJ;
+import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.ADJ_Type;
+import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.N;
+import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.NN;
+import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpNameFinder;
 import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpPosTagger;
 import de.tudarmstadt.ukp.dkpro.core.snowball.SnowballStemmer;
 import de.tudarmstadt.ukp.dkpro.core.stanfordnlp.StanfordNamedEntityRecognizer;
+import de.tudarmstadt.ukp.dkpro.core.stanfordnlp.StanfordParser;
 import de.tudarmstadt.ukp.dkpro.core.stanfordnlp.StanfordSegmenter;
 import de.tudarmstadt.ukp.dkpro.core.stopwordremover.StopWordRemover;
 import de.tudarmstadt.ukp.dkpro.core.tokit.BreakIteratorSegmenter;
@@ -19,7 +26,9 @@ import de.tudarmstadt.ukp.dkpro.keyphrases.core.candidate.CandidateAnnotator;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.candidate.CandidateAnnotatorFactory;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.coreference.ranking.CoreferencedTfidfAnnotator;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.evaluator.KeyphraseEvaluator;
+import de.tudarmstadt.ukp.dkpro.keyphrases.core.evaluator.KeyphraseGoldStandardFilter;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.evaluator.KeyphraseWriter;
+import de.tudarmstadt.ukp.dkpro.keyphrases.core.evaluator.util.Matchings;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.filter.PosSequenceFilter;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.filter.factory.KeyphraseMergerFactory;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.postprocessing.KeyphraseMerger;
@@ -41,12 +50,15 @@ import de.tudarmstadt.ukp.dkpro.keyphrases.textgraphs.util.PageRank;
 import de.unidue.langtech.teaching.pp.stacha.BaselineKeywords;
 import de.unidue.langtech.teaching.pp.stacha.newType.Printer;
 import de.unidue.langtech.teaching.pp.stacha.newType.Test;
+import de.unidue.langtech.teaching.pp.type.DetectedLanguage;
+import edu.stanford.nlp.dcoref.CoNLL2011DocumentReader.NamedEntityAnnotation;
+import edu.stanford.nlp.ling.CoreAnnotations.NamedEntityTagAnnotation;
+import net.didion.jwnl.data.Adjective;
+import net.didion.jwnl.data.list.Node;
 
 public class KeyPipeline {
 
 	public static void main(String[] args) throws Exception{
-    	
-       // String keyphraseCandidateFeaturePath = null;
 		
 		SimplePipeline.runPipeline(
         		
@@ -56,28 +68,21 @@ public class KeyPipeline {
                         KeyphraseReader.PARAM_DATA_SUFFIX, "txt"
                 )
                 
-               ,AnalysisEngineFactory.createEngineDescription(StanfordSegmenter.class, StanfordSegmenter.PARAM_LANGUAGE, "en") //TOKENIZATION  
-              
-              ,AnalysisEngineFactory.createEngineDescription(SnowballStemmer.class,SnowballStemmer.PARAM_LANGUAGE,"en")
-        
+               ,AnalysisEngineFactory.createEngineDescription(StanfordSegmenter.class, StanfordSegmenter.PARAM_LANGUAGE, "en",StanfordSegmenter.PARAM_STRICT_ZONING, false) //TOKENIZATION  
+                      
                ,AnalysisEngineFactory.createEngineDescription(OpenNlpPosTagger.class,OpenNlpPosTagger.PARAM_LANGUAGE, "en")
                
-             ,AnalysisEngineFactory.createEngineDescription(OpenNlpNameFinder.class)
-           	,AnalysisEngineFactory.createEngineDescription(CooccurrenceGraph.class,CooccurrenceGraph.PARAM_FEATURE_PATH,Token.class)
-           	,CooccurrenceGraphFactory.getCooccurrenceGraph_token(),createEngineDescription(PageRankRanking.class,PageRankRanking.PARAM_WEIGHTED, true)
-           	 
+          	,AnalysisEngineFactory.createEngineDescription(CooccurrenceGraph.class,CooccurrenceGraph.PARAM_FEATURE_PATH,Token.class,CooccurrenceGraph.PARAM_WINDOW_SIZE,5)
+            ,AnalysisEngineFactory.createEngineDescription(PageRankRanking.class,PageRankRanking.PARAM_WEIGHTED,true)
            	  ,AnalysisEngineFactory.createEngineDescription(CandidateAnnotator.class, CandidateAnnotator.PARAM_FEATURE_PATH, Token.class)
-           // ,AnalysisEngineFactory.createEngineDescription(PositionRanking.class)
-           // ,AnalysisEngineFactory.createEngineDescription(NodeDegreeRanking.class)
-           	//  ,AnalysisEngineFactory.createEngineDescription(PageRankRanking.class)
            	  ,AnalysisEngineFactory.createEngineDescription(PosSequenceFilter.class)
-           	  ,AnalysisEngineFactory.createEngineDescription(KeyphraseMerger.class,KeyphraseMerger.PARAM_MAX_LENGTH,4) 
+
+           //	,CooccurrenceGraphFactory.getCooccurrenceGraph_token(),createEngineDescription(PageRankRanking.class,PageRankRanking.PARAM_WEIGHTED, true)
+           	            	
+           	  ,AnalysisEngineFactory.createEngineDescription(KeyphraseMerger.class) 
            	  ,AnalysisEngineFactory.createEngineDescription(StopWordRemover.class, StopWordRemover.PARAM_MODEL_LOCATION,"[en]src/test/resources/stopwords/stop.txt")
-           // ,AnalysisEngineFactory.createEngineDescription(BaselineKeywords.class, BaselineKeywords.PARAM_LANGUAGE, "en")
 
            	  ,AnalysisEngineFactory.createEngineDescription(Printer.class)
-                //,AnalysisEngineFactory.createEngineDescription(EvaluatorExample.class)
-                
          );
 		
 		//AnalysisEngineDescription graph = createEngineDescription(CooccurrenceGraphFactory.getCooccurrenceGraph_token(),createEngineDescription(PageRankRanking.class, PageRankRanking.PARAM_WEIGHTED, true));
