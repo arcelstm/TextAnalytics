@@ -43,7 +43,7 @@ public class Printer
     	 int index=0;
     	
     	 for(Entry<Number,String> e: map.entrySet()){
-    		 System.out.println(e.getValue() + " ### " + e.getKey());
+    		 System.out.println(e.getValue() + " /// " + e.getKey());
     		 index++;
     		if (index>=15) break;
     	 }
