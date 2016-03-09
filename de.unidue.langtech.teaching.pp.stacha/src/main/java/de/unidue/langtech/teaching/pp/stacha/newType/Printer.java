@@ -1,8 +1,16 @@
 package de.unidue.langtech.teaching.pp.stacha.newType;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
@@ -25,8 +33,11 @@ public class Printer
     	Collection<Keyphrase> keyphrases = JCasUtil.select(jcas, Keyphrase.class);
     	//Collection<Token> tokens = JCasUtil.select(jcas, Token.class);
     	Collection<Sentence> sentences = JCasUtil.select(jcas, Sentence.class);
-    	Map<Number,String> map = new TreeMap<Number,String>(Collections.reverseOrder());
+    	Map<Number,String> selected = new TreeMap<Number,String>(Collections.reverseOrder());
     	
+    	String s = null;
+    	
+    	//"/src/test/resources/txt/stop.txt"
     	
     	System.out.println("");
     	
@@ -34,19 +45,25 @@ public class Printer
     		//if(k.getScore()>0 && !(k.getCoveredText().contains(".")))
     		//if(k.getScore()>1 && (k.getEnd()-k.getStart())>7)
     		
-    		 map.put(Math.floor(k.getScore()*100)/100,k.getKeyphrase());
+    		 s = k.getKeyphrase();
+    		//s = s.toLowerCase();
+    		 if (s.length()>2) 
+    		selected.put(Math.floor(k.getScore()*100)/100, s);
   		 }
     	 
-    	 for (Sentence s : sentences) System.out.println(s.getCoveredText());
+    	 //for (Sentence s : sentences) System.out.println(s.getCoveredText());
     	 System.out.println("");
     	 
     	 int index=0;
     	
-    	 for(Entry<Number,String> e: map.entrySet()){
-    		 System.out.println(e.getValue() + " /// " + e.getKey());
-    		 index++;
+    	 for(Entry<Number,String> e: selected.entrySet()){
+    		 
+    			 System.out.println(e.getValue() + " --- " + e.getKey());
+    			 index++;
+    		
     		if (index>=15) break;
     	 }
+		
     	    	
     	 System.out.println("");
     	 
