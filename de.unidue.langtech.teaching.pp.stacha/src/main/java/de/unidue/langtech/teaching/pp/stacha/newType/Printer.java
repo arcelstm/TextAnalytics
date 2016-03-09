@@ -1,8 +1,12 @@
 package de.unidue.langtech.teaching.pp.stacha.newType;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
@@ -34,16 +38,19 @@ public class Printer
     		//if(k.getScore()>0 && !(k.getCoveredText().contains(".")))
     		//if(k.getScore()>1 && (k.getEnd()-k.getStart())>7)
     		
-    		 map.put(Math.floor(k.getScore()*100)/100,k.getKeyphrase());
+    		String s = k.getKeyphrase();
+    		//s = s.toLowerCase();
+    		
+    		map.put(Math.floor(k.getScore()*100)/100, s);
   		 }
     	 
-    	 for (Sentence s : sentences) System.out.println(s.getCoveredText());
+    	 //for (Sentence s : sentences) System.out.println(s.getCoveredText());
     	 System.out.println("");
     	 
     	 int index=0;
     	
     	 for(Entry<Number,String> e: map.entrySet()){
-    		 System.out.println(e.getValue() + " /// " + e.getKey());
+    		 System.out.println(e.getValue() + " --- " + e.getKey());
     		 index++;
     		if (index>=15) break;
     	 }

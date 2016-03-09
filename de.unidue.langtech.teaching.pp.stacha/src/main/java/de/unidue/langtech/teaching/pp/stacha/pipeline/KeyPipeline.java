@@ -7,6 +7,7 @@ import org.apache.uima.fit.pipeline.SimplePipeline;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpPosTagger;
 import de.tudarmstadt.ukp.dkpro.core.stanfordnlp.StanfordSegmenter;
+import de.tudarmstadt.ukp.dkpro.core.stopwordremover.StopWordRemover;
 import de.tudarmstadt.ukp.dkpro.keyphrases.bookindexing.aggregation.RankedPhraseAggregationAnnotator;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.candidate.CandidateAnnotator;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.evaluator.KeyphraseEvaluator;
@@ -18,6 +19,7 @@ import de.tudarmstadt.ukp.dkpro.keyphrases.core.reader.KeyphraseReader;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.util.KeyphraseOffsetComparator;
 import de.tudarmstadt.ukp.dkpro.keyphrases.ranking.PageRankRanking;
 import de.tudarmstadt.ukp.dkpro.keyphrases.textgraphs.CooccurrenceGraph;
+import de.unidue.langtech.teaching.pp.stacha.BaselineKeywords;
 import de.unidue.langtech.teaching.pp.stacha.newType.Printer;
 
 public class KeyPipeline {
@@ -33,7 +35,6 @@ public class KeyPipeline {
                         KeyphraseReader.PARAM_DATA_SUFFIX, "txt",
                         KeyphraseReader.PARAM_LANGUAGE, "en"
                 )
-                
             ,AnalysisEngineFactory.createEngineDescription(StanfordSegmenter.class) //TOKENIZATION  
 
             ,AnalysisEngineFactory.createEngineDescription(OpenNlpPosTagger.class)
@@ -42,7 +43,6 @@ public class KeyPipeline {
             ,AnalysisEngineFactory.createEngineDescription(PageRankRanking.class,PageRankRanking.PARAM_WEIGHTED, false)              
 
             ,AnalysisEngineFactory.createEngineDescription(CandidateAnnotator.class, CandidateAnnotator.PARAM_FEATURE_PATH, Token.class)
-          
            	,AnalysisEngineFactory.createEngineDescription(PosSequenceFilter.class)
            //	,CooccurrenceGraphFactory.getCooccurrenceGraph_token(),createEngineDescription(PageRankRanking.class,PageRankRanking.PARAM_WEIGHTED, true)
            	
