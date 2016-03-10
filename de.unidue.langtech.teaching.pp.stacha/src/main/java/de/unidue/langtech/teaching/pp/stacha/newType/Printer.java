@@ -42,14 +42,17 @@ public class Printer
     	System.out.println("");
     	
     	 for(Keyphrase k:keyphrases){
-    		//if(k.getScore()>0 && !(k.getCoveredText().contains(".")))
-    		//if(k.getScore()>1 && (k.getEnd()-k.getStart())>7)
-    		
     		 s = k.getKeyphrase();
+    		 
     		//s = s.toLowerCase();
-    		 if (s.length()>2) 
-    		selected.put(Math.floor(k.getScore()*100)/100, s);
-  		 }
+    		 if (s.length()>1 && !(selected.toString().toLowerCase().contains(s.toLowerCase()))) {
+    			 
+    					 selected.put(Math.floor(k.getScore()*100)/100, s);
+    				
+    		 } 			
+    			 //selected.put(Math.floor(k.getScore()*100)/100, s);
+    	}
+  		 
     	 
     	 //for (Sentence s : sentences) System.out.println(s.getCoveredText());
     	 System.out.println("");
