@@ -36,22 +36,33 @@ public class Printer
     	Map<Number,String> selected = new TreeMap<Number,String>(Collections.reverseOrder());
     	
     	String s = null;
+    	String low =null;
+    	boolean x;
     	
     	//"/src/test/resources/txt/stop.txt"
     	
     	System.out.println("");
     	
-    	 for(Keyphrase k:keyphrases){
-    		//if(k.getScore()>0 && !(k.getCoveredText().contains(".")))
-    		//if(k.getScore()>1 && (k.getEnd()-k.getStart())>7)
-    		
+    	for(Keyphrase k:keyphrases){
     		 s = k.getKeyphrase();
+    		 low = s.toLowerCase();
+    		 x = selected.toString().toLowerCase().contains(low);
+    		 
     		//s = s.toLowerCase();
-    		 if (s.length()>2) 
-    		selected.put(Math.floor(k.getScore()*100)/100, s);
-  		 }
+    		 if (s.length()>1&&!x) selected.put(Math.floor(k.getScore()*100)/100, s);
+    		
+    	}
+  		 
+    	 for(Entry<Number,String> e: selected.entrySet()){
+    		 
+    		if(selected.containsValue(e.getValue())){
+    			//selected.remove(e);
+    		}
+    		 
+    	 }
+    	
     	 
-    	 //for (Sentence s : sentences) System.out.println(s.getCoveredText());
+    	 
     	 System.out.println("");
     	 
     	 int index=0;
@@ -61,7 +72,7 @@ public class Printer
     			 System.out.println(e.getValue() + " --- " + e.getKey());
     			 index++;
     		
-    		if (index>=15) break;
+    		if (index>=20) break;
     	 }
 		
     	    	
