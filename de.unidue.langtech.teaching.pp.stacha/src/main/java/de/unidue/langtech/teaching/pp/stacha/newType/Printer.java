@@ -43,15 +43,14 @@ public class Printer
     	
     	System.out.println("");
     	
-    	for(Keyphrase k:keyphrases){
+    	 for(Keyphrase k:keyphrases){
     		 s = k.getKeyphrase();
     		 low = s.toLowerCase();
     		 x = selected.toString().toLowerCase().contains(low);
-    		 
     		//s = s.toLowerCase();
     		 if (s.length()>1&&!x) selected.put(Math.floor(k.getScore()*100)/100, s);
     		
-    	}
+    	
   		 
     	 for(Entry<Number,String> e: selected.entrySet()){
     		 
@@ -61,6 +60,14 @@ public class Printer
     		 
     	 }
     	
+    		 if (s.length()>1 && !(selected.toString().toLowerCase().contains(s.toLowerCase()))) {
+    			 
+    					 selected.put(Math.floor(k.getScore()*100)/100, s);
+    				
+    		 } 			
+    			 //selected.put(Math.floor(k.getScore()*100)/100, s);
+    	}
+  		 
     	 
     	 
     	 System.out.println("");
