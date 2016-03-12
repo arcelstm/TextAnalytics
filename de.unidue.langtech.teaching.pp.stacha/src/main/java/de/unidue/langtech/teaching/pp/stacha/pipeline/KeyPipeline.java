@@ -20,75 +20,95 @@ import de.tudarmstadt.ukp.dkpro.keyphrases.textgraphs.CooccurrenceGraph;
 
 public class KeyPipeline {
 
+	@SuppressWarnings("null")
 	public static void main(String[] args) throws Exception{
+		
+		int nr= 20;
+		
+		String[]  posPatterns = {
+				"N",
+				"N_N",
+				"J_N"
+		};
 		
 		SimplePipeline.runPipeline(
 				
 			CollectionReaderFactory.createReader(
 					TextReader.class,
-					TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/water.txt",
+					//TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/ap880623-0135.body",
+					//TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/irma_iro07e.txt",
+					TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/foodfirst_ff08ne.txt",
 					TextReader.PARAM_LANGUAGE,"en"				
 			),
 			
             AnalysisEngineFactory.createEngineDescription(
             		StanfordSegmenter.class
             ), 
-
+            
             AnalysisEngineFactory.createEngineDescription(
             		OpenNlpPosTagger.class
             ),
-
-          	AnalysisEngineFactory.createEngineDescription(
-          			CooccurrenceGraph.class,
-          			CooccurrenceGraph.PARAM_FEATURE_PATH,Token.class,
-          			CooccurrenceGraph.PARAM_WINDOW_SIZE,3
-          	),
-          	
-            AnalysisEngineFactory.createEngineDescription(
-            		PageRankRanking.class
-            ),             
-
+                        
             AnalysisEngineFactory.createEngineDescription(
             		CandidateAnnotator.class, 
             		CandidateAnnotator.PARAM_FEATURE_PATH, Token.class
             ),
-
+            
+           
+            
             AnalysisEngineFactory.createEngineDescription(
-            		PosSequenceFilter.class
-            ),
+          			CooccurrenceGraph.class,
+          			CooccurrenceGraph.PARAM_FEATURE_PATH,Token.class,
+          			CooccurrenceGraph.PARAM_WINDOW_SIZE,3
+          	),
             
-            
+          	
+          	 
+            AnalysisEngineFactory.createEngineDescription(
+            		PageRankRanking.class,
+            		PageRankRanking.PARAM_WEIGHTED,false
+            ),  
              
-           	AnalysisEngineFactory.createEngineDescription(
+                AnalysisEngineFactory.createEngineDescription(
            			KeyphraseMerger.class, 
-           			KeyphraseMerger.PARAM_KEEP_PARTS, false, 
-           			KeyphraseMerger.PARAM_MAX_LENGTH,4
-           	),
-           	           
+           			KeyphraseMerger.PARAM_KEEP_PARTS, false,
+           			KeyphraseMerger.PARAM_MAX_LENGTH,2
+           	),  
+                
+                AnalysisEngineFactory.createEngineDescription(
+					StopWordRemover.class,
+			        StopWordRemover.PARAM_MODEL_LOCATION,"src/test/resources/stopwords/english_keyphrase_stopwords.txt"
+			),
+                
+              AnalysisEngineFactory.createEngineDescription(
+            		PosSequenceFilter.class,
+            		PosSequenceFilter.PARAM_POS_PATTERNS,posPatterns
+            ),   
+                
+           
+           
+        
+            
             AnalysisEngineFactory.createEngineDescription(
             		FrequencyFilter.class,
-            		FrequencyFilter.MAX_FREQUENCY,30,
-            		FrequencyFilter.MIN_FREQUENCY,2
+            		FrequencyFilter.MAX_FREQUENCY,3,
+            		FrequencyFilter.MIN_FREQUENCY,1
             ),
-           	
-			AnalysisEngineFactory.createEngineDescription(
-					StopWordRemover.class,
-			        StopWordRemover.PARAM_MODEL_LOCATION,"src/test/resources/stopwords/stop.txt"
-			),
-			
+            
+              
         	AnalysisEngineFactory.createEngineDescription(
-        			KeyphraseWriter.class, KeyphraseWriter.PARAM_N, 15, 
+        			KeyphraseWriter.class, KeyphraseWriter.PARAM_N, nr, 
         			KeyphraseWriter.PARAM_LOWERCASE,true,
         			KeyphraseWriter.PARAM_REMOVE_CONTAINED,true
         	),
         	
         	AnalysisEngineFactory.createEngineDescription(
                     KeyphraseEvaluator.class,
-                    KeyphraseEvaluator.PARAM_N, 15,
+                    KeyphraseEvaluator.PARAM_N, nr,
                     KeyphraseEvaluator.PARAM_EVAL_TYPE, KeyphraseEvaluator.EvaluatorType.Token.toString(),
                     KeyphraseEvaluator.PARAM_REMOVE_GOLD_AFTER_MATCH, true,
                     KeyphraseEvaluator.PARAM_LOWERCASE,true
-            )
+        	)
         	
 		);
 		
