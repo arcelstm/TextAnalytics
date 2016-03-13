@@ -1,3 +1,4 @@
+
 package de.unidue.langtech.teaching.pp.stacha.pipeline;
 
 import org.apache.uima.fit.factory.AnalysisEngineFactory;
@@ -15,6 +16,8 @@ import de.tudarmstadt.ukp.dkpro.keyphrases.core.evaluator.KeyphraseWriter;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.filter.PosSequenceFilter;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.filter.frequency.FrequencyFilter;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.postprocessing.KeyphraseMerger;
+import de.tudarmstadt.ukp.dkpro.keyphrases.core.type.Keyphrase;
+import de.tudarmstadt.ukp.dkpro.keyphrases.core.wrapper.Candidate;
 import de.tudarmstadt.ukp.dkpro.keyphrases.ranking.PageRankRanking;
 import de.tudarmstadt.ukp.dkpro.keyphrases.textgraphs.CooccurrenceGraph;
 
@@ -35,10 +38,10 @@ public class KeyPipeline {
 				
 			CollectionReaderFactory.createReader(
 					TextReader.class,
-					//TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/ap880623-0135.body",
+					TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/ap880623-0135.body",
 					//TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/irma_iro07e.txt",
-					TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/foodfirst_ff08ne.txt",
-					TextReader.PARAM_LANGUAGE,"en"				
+					//TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/foodfirst_ff08ne.txt",
+					TextReader.PARAM_LANGUAGE,"en"
 			),
 			
             AnalysisEngineFactory.createEngineDescription(
@@ -58,8 +61,8 @@ public class KeyPipeline {
             
             AnalysisEngineFactory.createEngineDescription(
           			CooccurrenceGraph.class,
-          			CooccurrenceGraph.PARAM_FEATURE_PATH,Token.class,
-          			CooccurrenceGraph.PARAM_WINDOW_SIZE,3
+          			CooccurrenceGraph.PARAM_FEATURE_PATH,Keyphrase.class,
+          			CooccurrenceGraph.PARAM_WINDOW_SIZE,3 //
           	),
             
           	
@@ -72,7 +75,7 @@ public class KeyPipeline {
                 AnalysisEngineFactory.createEngineDescription(
            			KeyphraseMerger.class, 
            			KeyphraseMerger.PARAM_KEEP_PARTS, false,
-           			KeyphraseMerger.PARAM_MAX_LENGTH,2
+           			KeyphraseMerger.PARAM_MAX_LENGTH,3 //
            	),  
                 
                 AnalysisEngineFactory.createEngineDescription(
@@ -91,7 +94,7 @@ public class KeyPipeline {
             
             AnalysisEngineFactory.createEngineDescription(
             		FrequencyFilter.class,
-            		FrequencyFilter.MAX_FREQUENCY,3,
+            		FrequencyFilter.MAX_FREQUENCY,5, //
             		FrequencyFilter.MIN_FREQUENCY,1
             ),
             
