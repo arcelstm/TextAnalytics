@@ -1,4 +1,3 @@
-
 package de.unidue.langtech.teaching.pp.stacha.pipeline;
 
 import org.apache.uima.fit.factory.AnalysisEngineFactory;
@@ -17,13 +16,11 @@ import de.tudarmstadt.ukp.dkpro.keyphrases.core.filter.PosSequenceFilter;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.filter.frequency.FrequencyFilter;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.postprocessing.KeyphraseMerger;
 import de.tudarmstadt.ukp.dkpro.keyphrases.core.type.Keyphrase;
-import de.tudarmstadt.ukp.dkpro.keyphrases.core.wrapper.Candidate;
 import de.tudarmstadt.ukp.dkpro.keyphrases.ranking.PageRankRanking;
 import de.tudarmstadt.ukp.dkpro.keyphrases.textgraphs.CooccurrenceGraph;
 
 public class KeyPipeline {
 
-	@SuppressWarnings("null")
 	public static void main(String[] args) throws Exception{
 		
 		int nr= 20;
@@ -41,6 +38,7 @@ public class KeyPipeline {
 					TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/ap880623-0135.body",
 					//TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/irma_iro07e.txt",
 					//TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/foodfirst_ff08ne.txt",
+					//TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/ngls_ng01ie.txt",
 					TextReader.PARAM_LANGUAGE,"en"
 			),
 			
@@ -57,51 +55,40 @@ public class KeyPipeline {
             		CandidateAnnotator.PARAM_FEATURE_PATH, Token.class
             ),
             
-           
-            
             AnalysisEngineFactory.createEngineDescription(
           			CooccurrenceGraph.class,
           			CooccurrenceGraph.PARAM_FEATURE_PATH,Keyphrase.class,
-          			CooccurrenceGraph.PARAM_WINDOW_SIZE,3 //
+          			CooccurrenceGraph.PARAM_WINDOW_SIZE,4 //
           	),
             
-          	
-          	 
             AnalysisEngineFactory.createEngineDescription(
-            		PageRankRanking.class,
-            		PageRankRanking.PARAM_WEIGHTED,false
+            		PageRankRanking.class
             ),  
              
-                AnalysisEngineFactory.createEngineDescription(
+            AnalysisEngineFactory.createEngineDescription(
            			KeyphraseMerger.class, 
-           			KeyphraseMerger.PARAM_KEEP_PARTS, false,
            			KeyphraseMerger.PARAM_MAX_LENGTH,3 //
            	),  
                 
-                AnalysisEngineFactory.createEngineDescription(
+            AnalysisEngineFactory.createEngineDescription(
 					StopWordRemover.class,
 			        StopWordRemover.PARAM_MODEL_LOCATION,"src/test/resources/stopwords/english_keyphrase_stopwords.txt"
 			),
                 
-              AnalysisEngineFactory.createEngineDescription(
+            AnalysisEngineFactory.createEngineDescription(
             		PosSequenceFilter.class,
             		PosSequenceFilter.PARAM_POS_PATTERNS,posPatterns
             ),   
                 
-           
-           
-        
-            
             AnalysisEngineFactory.createEngineDescription(
             		FrequencyFilter.class,
             		FrequencyFilter.MAX_FREQUENCY,5, //
             		FrequencyFilter.MIN_FREQUENCY,1
             ),
             
-              
         	AnalysisEngineFactory.createEngineDescription(
-        			KeyphraseWriter.class, KeyphraseWriter.PARAM_N, nr, 
-        			KeyphraseWriter.PARAM_LOWERCASE,true,
+        			KeyphraseWriter.class, 
+        			KeyphraseWriter.PARAM_N, nr, 
         			KeyphraseWriter.PARAM_REMOVE_CONTAINED,true
         	),
         	
