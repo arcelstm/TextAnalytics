@@ -23,7 +23,7 @@ public class KeyPipeline {
 
 	public static void main(String[] args) throws Exception{
 		
-		int nr= 20;
+		int nr= 10;
 		
 		String[]  posPatterns = {
 				"N",
@@ -35,9 +35,9 @@ public class KeyPipeline {
 				
 			CollectionReaderFactory.createReader(
 					TextReader.class,
-					TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/ap880623-0135.body",
+					//TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/ap880623-0135.body",
 					//TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/irma_iro07e.txt",
-					//TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/foodfirst_ff08ne.txt",
+					TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/foodfirst_ff08ne.txt",
 					//TextReader.PARAM_SOURCE_LOCATION, "src/test/resources/txt/ngls_ng01ie.txt",
 					TextReader.PARAM_LANGUAGE,"en"
 			),
@@ -58,7 +58,7 @@ public class KeyPipeline {
             AnalysisEngineFactory.createEngineDescription(
           			CooccurrenceGraph.class,
           			CooccurrenceGraph.PARAM_FEATURE_PATH,Keyphrase.class,
-          			CooccurrenceGraph.PARAM_WINDOW_SIZE,4 //
+          			CooccurrenceGraph.PARAM_WINDOW_SIZE,4 // 3-5
           	),
             
             AnalysisEngineFactory.createEngineDescription(
@@ -67,7 +67,7 @@ public class KeyPipeline {
              
             AnalysisEngineFactory.createEngineDescription(
            			KeyphraseMerger.class, 
-           			KeyphraseMerger.PARAM_MAX_LENGTH,3 //
+           			KeyphraseMerger.PARAM_MAX_LENGTH,4 // 3,4
            	),  
                 
             AnalysisEngineFactory.createEngineDescription(
@@ -82,7 +82,7 @@ public class KeyPipeline {
                 
             AnalysisEngineFactory.createEngineDescription(
             		FrequencyFilter.class,
-            		FrequencyFilter.MAX_FREQUENCY,5, //
+            		FrequencyFilter.MAX_FREQUENCY,3, // 3,5
             		FrequencyFilter.MIN_FREQUENCY,1
             ),
             
